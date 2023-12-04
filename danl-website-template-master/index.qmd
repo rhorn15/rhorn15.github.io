@@ -1,5 +1,5 @@
 ---
-title: "YOUR NAME"
+title: "Ryan Horn" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
@@ -9,19 +9,19 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/feed/
     - icon: instagram
       text: Instagram
-      href: https://instagram.com
+      href: https://www.instagram.com/ryan_horn15/
     - icon: github
       text: GitHub
       href: https://github.com
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: https://rhorn15.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:rmh14@geneseo.edu
 
 ---
 
