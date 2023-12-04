@@ -15,7 +15,7 @@ about:
       href: https://www.instagram.com/ryan_horn15/
     - icon: github
       text: GitHub
-      href: https://github.com/rhorn15/rhorn15.github.io/blob/main/project.qmd
+      href: https://github.com/rhorn15/rhorn15.github.io
     - icon: file-earmark-pdf
       text: Resumé
       href: https://rhorn15.github.io/resume-example.pdf

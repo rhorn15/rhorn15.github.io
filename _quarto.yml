@@ -3,7 +3,7 @@ project:
   output-dir: "."
 
 website:
-  title: "YOUR NAME"
+  title: "Data Analytics Project"
   navbar:
     pinned: true
     left:
