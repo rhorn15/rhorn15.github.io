@@ -1,0 +1,10 @@
+---
+title: "Beer Markets"
+author: "Ryan Horn"
+date: "2023-12-11"
+categories: [news]
+---
+
+Here is some analytics in relation to Beer Markets!
+
+![](Beer image .jpeg)

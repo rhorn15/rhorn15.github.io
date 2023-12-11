@@ -9,7 +9,7 @@ website:
     left:
       - text: Project
         href: project.qmd
-      - text: Blog
+      - text: Ryan Horn's Blog
         href: blog-listing.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"

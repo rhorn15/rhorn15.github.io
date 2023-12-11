@@ -1,12 +1,10 @@
 ---
 title: "Welcome To My Blog"
-author: "YOUR NAME"
-date: "2023-10-27"
+author: "Ryan Horn"
+date: "2023-12-11"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!
 
-![](thumbnail.jpg)
-
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+![](Data Analytics.jpeg)

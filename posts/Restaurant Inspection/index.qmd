@@ -1,0 +1,23 @@
+---
+title: "Restaurant Inspections"
+author: "Ryan Horn"
+date: "2023-12-11"
+categories: [news]
+---
+
+Listed here are some analytics related to restaurants in NYC.
+
+![](Restaurant Image.jpeg)
+```{r, setup, include=FALSE, echo=FALSE}
+restaurant <- read.csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
+```
+
+```{r,echo=FALSE}
+library(tidyverse)
+library(skimr)
+library(ggplot2)
+ggplot(restaurant) +
+  geom_boxplot(aes(x = SCORE, y = GRADE, fill = GRADE) ) +
+  facet_grid( "CRITICAL FLAG" ~ . )
+```
+

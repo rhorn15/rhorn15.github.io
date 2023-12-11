@@ -1,5 +1,5 @@
 ---
-title: "Insightful Analytics<br><br>"
+title: "Ryan Horn's Blog<br><br>"
 listing:
   contents: posts
   type: default

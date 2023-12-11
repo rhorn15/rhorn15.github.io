@@ -1,0 +1,39 @@
+---
+title: "Spotify Analytics"
+author: "Ryan Horn"
+date: "2023-12-11"
+categories: [news]
+---
+
+Here are some interesting analytics related to spotify!
+
+![](Spotify Image.jpeg)
+```{r, setup, include=FALSE,echo=FALSE}
+# Load your data
+spotify_all <- read.csv("/Users/ryanm/Documents/GIT for Rstudio/rhorn15.github.io/posts/Spotify/spotify_all.csv")
+```
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(skimr)
+library(ggplot2)
+
+Q1c <- spotify_all %>%
+  group_by(artist_name) %>%
+  mutate(n_popular_artist = n()) %>%
+  ungroup() %>%
+  mutate(artist_ranking = dense_rank(desc(n_popular_artist))) %>%
+  filter(artist_ranking <= 10)
+
+```
+
+```{r, fig.cap="Boxplot of Artist Rankings", echo=FALSE}
+ggplot(Q1c) +
+  geom_histogram(aes(x = pos), binwidth = 1) + 
+  facet_grid(fct_reorder(artist_name, artist_ranking) ~ .  , switch = "y") +
+  theme(strip.text.y.left = element_text(angle = 0))
+
+```
+Here we can see that "pos" (position of track within a playlist), doesn't vary a significant amount between these top ten artists.
+
+

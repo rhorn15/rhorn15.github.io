@@ -2,7 +2,7 @@
 title: "Ryan Horn"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  image: img/profile Picture.png 
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
@@ -18,7 +18,7 @@ about:
       href: https://github.com/rhorn15/rhorn15.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://rhorn15.github.io/resume-example.pdf
+      href: Resume-Ryan-Horn.pdf
     - icon: mailbox
       text: Email
       href: mailto:rmh14@geneseo.edu
@@ -26,16 +26,14 @@ about:
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+Data Analytics Student| Aug 2023 - Dec 2025 <br>
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+US Army Infantryman July 2020 - July 2026
 
 
