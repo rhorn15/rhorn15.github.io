@@ -12,12 +12,20 @@ Listed here are some analytics related to restaurants in NYC.
 restaurant <- read.csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
 ```
 
-```{r,echo=FALSE}
+```{r, echo=FALSE}
 library(tidyverse)
 library(skimr)
 library(ggplot2)
 ggplot(restaurant) +
-  geom_boxplot(aes(x = SCORE, y = GRADE, fill = GRADE) ) +
-  facet_grid( "CRITICAL FLAG" ~ . )
+  geom_histogram(aes(x = SCORE), binwidth = 1 ) +
+  facet_wrap( "CRITICAL FLAG" ~ GRADE, scales = 'free' )
 ```
+As we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A,  B, and C.
 
+```{r, echo=FALSE}
+ggplot(restaurant) +
+  geom_bar (aes(x = "CRITICAL FLAG",
+               y = after_stat(prop), group = 1)) +
+  facet_grid( GRADE ~ BORO )
+```
+For this graph, we can see that the distribution of CRITICAL FLAG is similar across all the boros.

@@ -8,3 +8,41 @@ categories: [news]
 Here is some analytics in relation to Beer Markets!
 
 ![](Beer image .jpeg)
+```{r, echo=FALSE}
+beer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')
+library(ggplot2)
+
+
+ggplot(beer_mkts, aes(x = quantity, y = dollar_spent)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of Quantity vs Dollar Spent",
+       x = "Quantity",
+       y = "Dollar Spent")
+
+```
+This scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.
+
+```{r, echo=FALSE}
+
+ggplot(beer_mkts, aes(x = brand, y = dollar_spent, fill = brand)) +
+  geom_bar(stat = "summary", fun = sum) +
+  labs(title = "Total Dollar Spent by Brand",
+       x = "Brand",
+       y = "Total Dollar Spent") +
+  theme_minimal()
+
+```
+This bar plot shows the total dollar spent on each beer brand.
+
+```{r, echo=FALSE}
+ggplot(beer_mkts, aes(x = promo, y = price_per_floz, fill = promo)) +
+  geom_boxplot() +
+  labs(title = "Box Plot of Price per fl.oz. by Promotion Status",
+       x = "Promotion Status",
+       y = "Price per fl.oz.") +
+  theme_minimal()
+
+```
+
+This box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted.
+

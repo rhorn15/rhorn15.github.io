@@ -179,21 +179,21 @@
     "href": "blog-listing.html",
     "title": "Ryan Horn’s Blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Beer Markets/index.html",
     "href": "posts/Beer Markets/index.html",
     "title": "Beer Markets",
     "section": "",
-    "text": "Here is some analytics in relation to Beer Markets!"
+    "text": "Here is some analytics in relation to Beer Markets!\n\n\n\n\n\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n\n\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted."
   },
   {
     "objectID": "posts/Restaurant Inspection/index.html",
     "href": "posts/Restaurant Inspection/index.html",
     "title": "Restaurant Inspections",
     "section": "",
-    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
+    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\nFor this graph, we can see that the distribution of CRITICAL FLAG is similar across all the boros."
   },
   {
     "objectID": "posts/Spotify/index.html",
