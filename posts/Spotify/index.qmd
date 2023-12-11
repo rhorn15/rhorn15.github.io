@@ -36,4 +36,35 @@ ggplot(Q1c) +
 ```
 Here we can see that "pos" (position of track within a playlist), doesn't vary a significant amount between these top ten artists.
 
+```{r, echo=FALSE}
 
+
+ggplot(spotify_all, aes(x = pos)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
+  labs(title = "Distribution of Track Positions in Playlists",
+       x = "Track Position",
+       y = "Frequency") +
+  theme_minimal()
+
+
+```
+
+This histogram visualizes the distribution of track positions within playlists.
+
+```{r, echo=FALSE}
+top_artists <- spotify_all %>%
+  group_by(artist_name) %>%
+  summarise(total_tracks = n()) %>%
+  arrange(desc(total_tracks)) %>%
+  slice_head(n = 10)
+
+ggplot(top_artists, aes(x = reorder(artist_name, -total_tracks), y = total_tracks, fill = artist_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Artists in Playlists",
+       x = "Artist Name",
+       y = "Total Tracks in Playlists") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+This bar plot shows the top 10 artists based on the total number of tracks in playlists.

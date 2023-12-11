@@ -23,9 +23,33 @@ ggplot(restaurant) +
 As we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A,  B, and C.
 
 ```{r, echo=FALSE}
-ggplot(restaurant) +
-  geom_bar (aes(x = "CRITICAL FLAG",
-               y = after_stat(prop), group = 1)) +
-  facet_grid( GRADE ~ BORO )
+
+top_cuisines <- restaurant %>%
+  group_by(CUISINE.DESCRIPTION) %>%
+  summarise(total_restaurants = n()) %>%
+  arrange(desc(total_restaurants)) %>%
+  slice_head(n = 10)
+
+ggplot(top_cuisines, aes(x = reorder(CUISINE.DESCRIPTION, -total_restaurants), y = total_restaurants, fill = CUISINE.DESCRIPTION)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Cuisine Types",
+       x = "Cuisine Type",
+       y = "Number of Restaurants") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
-For this graph, we can see that the distribution of CRITICAL FLAG is similar across all the boros.
+This bar plot shows the top 10 cuisine types based on the number of restaurants.
+
+```{r, echo=FALSE}
+
+ggplot(restaurant, aes(x = SCORE)) +
+  geom_histogram(binwidth = 5, fill = "orange", color = "black") +
+  labs(title = "Distribution of Inspection Scores",
+       x = "Score",
+       y = "Frequency") +
+  theme_minimal()
+
+```
+
+This histogram visualizes the distribution of inspection scores for restaurants.
