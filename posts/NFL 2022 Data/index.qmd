@@ -66,23 +66,23 @@ print(summary_data)
 
 ```{r}
 library(ggplot2)
-# Load necessary libraries
-library(ggplot2)
+result <- NFL2022_stuffs %>%
+  filter(
+    wp > 0.2 & wp < 0.75,
+    down <= 2,
+    half_seconds_remaining > 120
+  ) %>%
+  group_by(posteam) %>%
+  summarise(mean_pass = mean(pass, na.rm = TRUE))
 
+result$posteam <- factor(result$posteam, levels = result$posteam[order(result$mean_pass)])
 
-summary_data <- summary_data %>%
-  mutate(posteam = factor(posteam, levels = summary_data[order(mean_pass, decreasing = TRUE), "posteam"]))
-
-
-ggplot(summary_data, aes(x = posteam, y = mean_pass, label = posteam)) +
+ggplot(result, aes(x = posteam, y = mean_pass)) +
   geom_point() +
-  geom_text(nudge_y = 0.02, size = 3, check_overlap = TRUE) + 
-  labs(title = "Mean Value of pass for Each posteam",
+  labs(title = "Mean Value of Pass for Each posteam",
        x = "posteam",
-       y = "Mean pass") +
-  theme_minimal() +
+       y = "Mean Pass Value") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
 
 ```
 ## Q2d
