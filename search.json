@@ -21,102 +21,18 @@
     "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ryan Horn",
+    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
+    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
+    "title": "danl200-hw5-Horn-Ryan.qmd",
     "section": "",
-    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 years. I love data analyitcs and hope to make a career out of it."
+    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ryan Horn",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - Dec 2025"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ryan Horn",
-    "section": "Experience",
-    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html",
-    "href": "posts/beer-markets/beer-markets.html",
-    "title": "Beer Markets",
+    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
+    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
+    "title": "danl200-hw5-Horn-Ryan.qmd",
     "section": "",
-    "text": "Let’s analyze the beer_data data:\nbeer_data &lt;- read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_data-data.frame",
-    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_data-data.frame",
-    "title": "Beer Markets",
-    "section": "Variable Description for beer_data data.frame",
-    "text": "Variable Description for beer_data data.frame\nThe following describes the variables in the beer_data data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "title": "Beer Markets",
-    "section": "Purchase Patterns",
-    "text": "Purchase Patterns\nWe’ll explore the purchase patterns in the dataset. This includes understanding the most popular brands, the average quantity purchased, and spending habits across different markets. Here are some specific analyses we can perform:\n\nCalculate the total quantity and spending for each brand.\nFind the average quantity purchased and average spending per purchase.\nCompare the total spending across different markets.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. Let’s start by calculating the total quantity and spending for each brand.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Reading the CSV file\nbeer_data = pd.read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")\n\n# Setting up the visualisation settings\nsns.set(style=\"whitegrid\")\n\n# Calculate total quantity and spending for each brand\nbrand_summary = beer_data.groupby('brand').agg({'quantity':'sum', 'dollar_spent':'sum'}).reset_index()\n\n# Sort by total quantity and spending\nbrand_summary_sorted_quantity = brand_summary.sort_values('quantity', ascending=False)\nbrand_summary_sorted_spent = brand_summary.sort_values('dollar_spent', ascending=False)\n\n\n# Plotting total quantity for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='quantity', y='brand', data=brand_summary_sorted_quantity, palette='viridis')\nplt.title('Total Quantity of Beer Purchased by Brand')\nplt.xlabel('Total Quantity')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n# Plotting total spending for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='dollar_spent', y='brand', data=brand_summary_sorted_spent, palette='viridis')\nplt.title('Total Spending on Beer by Brand')\nplt.xlabel('Total Spending')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe bar charts above display the total quantity of beer purchased and the total spending by brand. From the looks of it, certain brands dominate in terms of quantity sold and total spending, indicating their popularity.\nNow, let’s calculate the average quantity purchased and average spending per purchase. For this, we’ll consider each row in the dataset as a separate purchase and compute the averages accordingly.\n\n# Calculate average quantity purchased and average spending per purchase\naverage_purchase = beer_data.groupby('brand').agg({\n    'quantity': 'mean', \n    'dollar_spent': 'mean'\n}).reset_index()\n\n# Sort by average quantity and average spending\naverage_purchase_sorted_quantity = average_purchase.sort_values('quantity', ascending=False)\naverage_purchase_sorted_spent = average_purchase.sort_values('dollar_spent', ascending=False)\n\n# Plotting average quantity for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='quantity', y='brand', data=average_purchase_sorted_quantity, palette='viridis')\nplt.title('Average Quantity of Beer Purchased by Brand')\nplt.xlabel('Average Quantity')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n# Plotting average spending for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='dollar_spent', y='brand', data=average_purchase_sorted_spent, palette='viridis')\nplt.title('Average Spending on Beer by Brand')\nplt.xlabel('Average Spending')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe visualizations above depict the average quantity of beer purchased per brand and the average spending per brand. This shows which brands tend to be bought in larger quantities on average and which brands tend to have higher spending per purchase, which could be indicative of their price point or the purchase of premium products.\nNext, we’ll look at the total spending across different markets to see if there are any notable differences in spending habits geographically. To do this, we’ll sum up the spending in each market and visualize it.\n\n# Calculate total spending in each market\nmarket_spending_summary = beer_data.groupby('market').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nmarket_spending_summary_sorted = market_spending_summary.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending in each market\nplt.figure(figsize=(12, 10))\nsns.barplot(x='dollar_spent', y='market', data=market_spending_summary_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Market')\nplt.xlabel('Total Spending')\nplt.ylabel('Market')\nplt.show()\n\n\n\n\nThe bar chart illustrates the total spending on beer by market, showcasing the differences in spending habits across various regions. Some markets have significantly higher spending, which could be due to a variety of factors including market size, consumer preferences, or economic factors.\nNow, let’s move on to the second analysis:"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html#demographic-analysis",
-    "href": "posts/beer-markets/beer-markets.html#demographic-analysis",
-    "title": "Beer Markets",
-    "section": "Demographic Analysis",
-    "text": "Demographic Analysis\nWe will examine which demographics are buying what kind of beer and whether spending habits vary by demographics such as age, employment, and race. For this, we could look at:\n\nSpending by age group\nSpending by employment status\nSpending by race\n\nI’ll start by analyzing spending by age group.\n\n# Calculate total spending by age group\nage_group_spending = beer_data.groupby('age').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nage_group_spending_sorted = age_group_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by age group\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='age', data=age_group_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Age Group')\nplt.xlabel('Total Spending')\nplt.ylabel('Age Group')\nplt.show()\n\n\n\n\nThe bar chart demonstrates the total spending on beer segmented by age group, highlighting which age groups spend the most on beer. It appears that certain age groups are more dominant in beer spending, which may align with the purchasing power or preferences of those groups.\nNext, we will examine spending by employment status.\n\n# Calculate total spending by employment status\nemployment_spending = beer_data.groupby('employment').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nemployment_spending_sorted = employment_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by employment status\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='employment', data=employment_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Employment Status')\nplt.xlabel('Total Spending')\nplt.ylabel('Employment Status')\nplt.show()\n\n\n\n\nThe visualization shows the total spending on beer by employment status. We can see that certain employment groups, such as full-time workers, are spending more on beer, which might be related to their disposable income.\nFinally, let’s look at spending by race to complete the demographic analysis.\n\n# Calculate total spending by race\nrace_spending = beer_data.groupby('race').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nrace_spending_sorted = race_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by race\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='race', data=race_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Race')\nplt.xlabel('Total Spending')\nplt.ylabel('Race')\nplt.show()\n\n\n\n\nThe bar chart above indicates the total spending on beer broken down by race, highlighting which racial groups account for the most beer spending within the dataset. This could reflect both the demographics of the regions where the data was collected and cultural preferences regarding beer.\nNow, let’s proceed to the third analysis:"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html#price-sensitivity",
-    "href": "posts/beer-markets/beer-markets.html#price-sensitivity",
-    "title": "Beer Markets",
-    "section": "Price Sensitivity",
-    "text": "Price Sensitivity\nWe’ll look at the price per fluid ounce and see if there are any trends or correlations with the quantity purchased or the brand popularity. To do this, we’ll calculate the average price per fluid ounce for each brand and then visualize how this relates to the average quantity purchased and the total quantity purchased by brand.\nFirst, let’s calculate the average price per fluid ounce for each brand.\n\n# Calculate average price per fluid ounce for each brand\nbrand_price_sensitivity = beer_data.groupby('brand').agg({\n    'price_per_floz': 'mean', \n    'quantity': 'sum'\n}).reset_index()\n\n# Sort by price per fluid ounce\nbrand_price_sensitivity_sorted = brand_price_sensitivity.sort_values('price_per_floz', ascending=True)\n\n# Plotting average price per fluid ounce for each brand and the total quantity purchased\nfig, ax1 = plt.subplots(figsize=(12, 10))\n\ncolor = 'tab:red'\nax1.set_xlabel('Brand')\nax1.set_ylabel('Average Price per Fluid Ounce', color=color)\nax1.bar(brand_price_sensitivity_sorted['brand'], brand_price_sensitivity_sorted['price_per_floz'], color=color)\nax1.tick_params(axis='y', labelcolor=color)\nax1.set_xticklabels(brand_price_sensitivity_sorted['brand'], rotation=90)\n\nax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis\ncolor = 'tab:blue'\nax2.set_ylabel('Total Quantity Purchased', color=color)  # we already handled the x-label with ax1\nax2.plot(brand_price_sensitivity_sorted['brand'], brand_price_sensitivity_sorted['quantity'], color=color)\nax2.tick_params(axis='y', labelcolor=color)\n\nfig.tight_layout()  # otherwise the right y-label is slightly clipped\nplt.title('Average Price per Fluid Ounce & Total Quantity Purchased by Brand')\nplt.show()\n\n\n\n\nIn the visualization, we have a bar graph showing the average price per fluid ounce for each brand (in red) and a line graph showing the total quantity purchased for each brand (in blue). This gives us a sense of whether there’s a relationship between the price and the quantity purchased. The x-axis labels are quite compressed due to the number of brands, but we can still observe trends such as whether lower-priced beers tend to be purchased in larger quantities.\nLastly, let’s move to the fourth analysis:"
-  },
-  {
-    "objectID": "posts/beer-markets/beer-markets.html#promotional-impact",
-    "href": "posts/beer-markets/beer-markets.html#promotional-impact",
-    "title": "Beer Markets",
-    "section": "Promotional Impact",
-    "text": "Promotional Impact\nWe’ll assess the impact of promotions on the quantity of beer purchased. For this analysis, we can calculate the average quantity purchased with and without promotions and visualize the difference. We’ll do this for each brand to see which brands are most affected by promotions.\nLet’s begin this analysis by looking at the average quantity purchased with and without promotions for each brand.\n\n# Calculate average quantity purchased with and without promotions for each brand\npromo_impact = beer_data.groupby(['brand', 'promo']).agg({'quantity':'mean'}).reset_index()\n\n# Pivot the data to have promo and non-promo side by side for each brand\npromo_impact_pivot = promo_impact.pivot(index='brand', columns='promo', values='quantity').reset_index()\npromo_impact_pivot.columns = ['brand', 'non_promo', 'promo']\n\n# Calculate the difference in average quantity purchased between promo and non-promo\npromo_impact_pivot['promo_impact'] = promo_impact_pivot['promo'] - promo_impact_pivot['non_promo']\n\n# Sort by the impact of promo\npromo_impact_pivot_sorted = promo_impact_pivot.sort_values('promo_impact', ascending=False)\n\n# Plotting the difference in average quantity purchased between promo and non-promo for each brand\nplt.figure(figsize=(12, 10))\nsns.barplot(x='promo_impact', y='brand', data=promo_impact_pivot_sorted, palette='viridis')\nplt.title('Impact of Promotions on Average Quantity Purchased by Brand')\nplt.xlabel('Difference in Average Quantity Purchased (Promo - Non-Promo)')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe bar chart illustrates the impact of promotions on the average quantity of beer purchased by brand. A positive value indicates that, on average, more beer is purchased when there is a promotion compared to when there isn’t. Some brands appear to be significantly more influenced by promotions, with customers buying more when the products are on sale or promotion.\nThis comprehensive analysis has provided insights into purchase patterns, demographic preferences, price sensitivity, and the impact of promotions on beer purchases."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "posts/starwars/starwars_df.html",
-    "href": "posts/starwars/starwars_df.html",
-    "title": "Starwars",
-    "section": "",
-    "text": "Let’s analyze the starwars data:\nstarwars &lt;- read_csv(\"https://bcdanl.github.io/data/starwars.csv\")"
-  },
-  {
-    "objectID": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
-    "href": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
-    "title": "Starwars",
-    "section": "Variable Description for starwars data.frame",
-    "text": "Variable Description for starwars data.frame\nThe following describes the variables in the starwars data.frame.\n\nfilms List of films the character appeared in\nname Name of the character\nspecies Name of species\nheight Height (cm)\nmass Weight (kg)\nhair_color, skin_color, eye_color Hair, skin, and eye colors\nbirth_year Year born (BBY = Before Battle of Yavin)\nsex The biological sex of the character, namely male, female, hermaphroditic, or none (as in the case for Droids).\ngender The gender role or gender identity of the character as determined by their personality or the way they were programmed (as in the case for Droids).\nhomeworld Name of homeworld"
-  },
-  {
-    "objectID": "posts/starwars/starwars_df.html#human-vs.-droid",
-    "href": "posts/starwars/starwars_df.html#human-vs.-droid",
-    "title": "Starwars",
-    "section": "Human vs. Droid",
-    "text": "Human vs. Droid\n\nggplot(data = \n         starwars %&gt;% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
+    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
   },
   {
     "objectID": "quarto-template.html",
@@ -175,25 +91,11 @@
     "text": "2.7 Inserting a HTML page"
   },
   {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "Ryan Horn’s Blog",
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/Beer Markets/index.html",
-    "href": "posts/Beer Markets/index.html",
-    "title": "Beer Markets",
-    "section": "",
-    "text": "Here is some analytics in relation to Beer Markets!\n\n\n\n\n\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n\n\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted."
-  },
-  {
-    "objectID": "posts/Restaurant Inspection/index.html",
-    "href": "posts/Restaurant Inspection/index.html",
-    "title": "Restaurant Inspections",
-    "section": "",
-    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
+    "text": "Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!"
   },
   {
     "objectID": "posts/Spotify/index.html",
@@ -203,18 +105,25 @@
     "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
   },
   {
+    "objectID": "posts/Restaurant Inspection/index.html",
+    "href": "posts/Restaurant Inspection/index.html",
+    "title": "Restaurant Inspections",
+    "section": "",
+    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
+  },
+  {
+    "objectID": "posts/Beer Markets/index.html",
+    "href": "posts/Beer Markets/index.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "Here is some analytics in relation to Beer Markets!\n\n\n\n\n\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n\n\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted."
+  },
+  {
     "objectID": "posts/NFL 2022 Data/index.html",
     "href": "posts/NFL 2022 Data/index.html",
     "title": "NFL 2022 Data",
     "section": "",
     "text": "Here is some analytics in relation to Data from the 2022 NFL season!"
-  },
-  {
-    "objectID": "posts/NFL 2022 Data/index.html#q1a",
-    "href": "posts/NFL 2022 Data/index.html#q1a",
-    "title": "NFL 2022 Data",
-    "section": "Q1a",
-    "text": "Q1a"
   },
   {
     "objectID": "posts/NFL 2022 Data/index.html#q2a",
@@ -264,5 +173,33 @@
     "title": "NFL 2022 Data",
     "section": "Q2g",
     "text": "Q2g\n\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nAnswer:\n\npasser_summary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(\n    mean_epa = mean(epa, na.rm = TRUE),\n    n_pass = n()\n  )\n\n`summarise()` has grouped output by 'posteam'. You can override using the\n`.groups` argument.\n\nquantile_threshold &lt;- quantile(passer_summary$n_pass, 0.75)\n\ntop_passers &lt;- passer_summary %&gt;%\n  filter(n_pass &gt;= quantile_threshold) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)\n\nprint(top_passers)\n\n# A tibble: 29 × 4\n# Groups:   posteam [29]\n   posteam passer     mean_epa n_pass\n   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;  &lt;int&gt;\n 1 ARI     K.Murray     0.0163    465\n 2 ATL     M.Mariota    0.0251    370\n 3 BAL     L.Jackson    0.0549    398\n 4 BUF     J.Allen      0.172     785\n 5 CHI     J.Fields    -0.0455    469\n 6 CIN     J.Burrow     0.153     854\n 7 CLE     J.Brissett   0.0912    445\n 8 DAL     D.Prescott   0.147     529\n 9 DEN     R.Wilson    -0.0163    609\n10 DET     J.Goff       0.171     661\n# ℹ 19 more rows"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ryan Horn",
+    "section": "",
+    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 years. I love data analyitcs and hope to make a career out of it."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ryan Horn",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - Dec 2025"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ryan Horn",
+    "section": "Experience",
+    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "Ryan Horn’s Blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   }
 ]
