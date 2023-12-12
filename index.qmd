@@ -25,7 +25,7 @@ about:
 
 ---
 
-  *Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 years. I love data analyitcs and hope to make a career out of it.*
+  *Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 years. I love data analytics and hope to make a career out of it.*
 
 ## Education
 
