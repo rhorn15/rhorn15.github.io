@@ -2,7 +2,7 @@
 title: "Beer Markets"
 author: "Ryan Horn"
 date: "2023-12-11"
-categories: [news]
+categories: [Beverages]
 ---
 
 Here is some analytics in relation to Beer Markets!

@@ -2,7 +2,7 @@
 title: "NFL 2022 Data"
 author: "Ryan Horn"
 date: "2023-12-11"
-categories: [news]
+categories: [Sports]
 ---
 
 Here is some analytics in relation to Data from the 2022 NFL season!

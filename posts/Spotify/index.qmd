@@ -2,7 +2,7 @@
 title: "Spotify Analytics"
 author: "Ryan Horn"
 date: "2023-12-11"
-categories: [news]
+categories: [Music]
 ---
 
 Here are some interesting analytics related to spotify!

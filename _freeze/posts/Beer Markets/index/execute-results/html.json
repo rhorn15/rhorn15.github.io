@@ -1,7 +1,7 @@
 {
-  "hash": "d4810a67a05542f58059251ff737b913",
+  "hash": "8796a87c7b97cc41c624dc8e11bd4de2",
   "result": {
-    "markdown": "---\ntitle: \"Beer Markets\"\nauthor: \"Ryan Horn\"\ndate: \"2023-12-11\"\ncategories: [news]\n---\n\n\nHere is some analytics in relation to Beer Markets!\n\n![](Beer image .jpeg)\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted.\n\n",
+    "markdown": "---\ntitle: \"Beer Markets\"\nauthor: \"Ryan Horn\"\ndate: \"2023-12-11\"\ncategories: [Beverages]\n---\n\n\nHere is some analytics in relation to Beer Markets!\n\n![](Beer image .jpeg)\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted.\n\n",
     "supporting": [
       "index_files"
     ],

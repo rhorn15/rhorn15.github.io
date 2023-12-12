@@ -2,7 +2,7 @@
 title: "Restaurant Inspections"
 author: "Ryan Horn"
 date: "2023-12-11"
-categories: [news]
+categories: [Food]
 ---
 
 Listed here are some analytics related to restaurants in NYC.
