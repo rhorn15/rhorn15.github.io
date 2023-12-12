@@ -2,10 +2,18 @@
 title: "danl200-hw5-Horn-Ryan.qmd"
 ---
 
-## Quarto
+## Q1a 
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Below is a link to my GitHub repository.
 
-```{r}
-1 + 1
-```
+href: <https://github.com/rhorn15/rhorn15.github.io>
+
+Below is a link to my website
+
+href:
+
+<https://rhorn15.github.io/>
+
+The answers for Q2 of the homework can be found in the blog section of my website or right here.
+
+href: <https://rhorn15.github.io/posts/NFL%202022%20Data/>
