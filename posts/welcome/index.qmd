@@ -2,7 +2,7 @@
 title: "Welcome To My Blog"
 author: "Ryan Horn"
 date: "2023-12-11"
-categories: [news]
+categories: [Introduction]
 ---
 
 Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!
