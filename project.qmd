@@ -1,6 +1,6 @@
 ---
 title: DANL Project
-subtitle: "Data-Driven Mastery: Unlocking Business Potential"
+subtitle: "Data-Driven Mastery: Road to excellence"
 author: 
   - Ryan Horn
   - Dylan Emler
@@ -22,6 +22,7 @@ execute:
 
 from: markdown+emoji
 ---
+
 ```{r setup}
 #| include: false
 library(tidyverse)
@@ -43,50 +44,135 @@ theme_set(theme_ipsum()+
           )
 ```
 
+## Introduction
 
+About this project :clap: 
 
-# Introduction
-
-About this project :clap:
-
-```{r}
-1 + 1
-```
-
+  In this project my group and I are using a data set of motor cars to determine the fastest cars, then we will decipher some parameters by what makes them the best.
 
 # Data
 
-The data.frame `mpg` contains a subset of the fuel economy data that the EPA makes available on [https://fueleconomy.gov/](https://fueleconomy.gov/). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. :oncoming_automobile:
+```{r}
+data("mtcars")
+```
 
+
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
 
 ## Summary Statistics
-
 ```{r}
-mpg <- ggplot2::mpg
+rmarkdown::paged_table(mtcars)
 ```
-
+### Summary Statistics
 ```{r}
-#| results: asis
-#| echo: false
-rmarkdown::paged_table(mpg) 
-```
-
-
-```{r}
-skim(mpg) %>% 
+skim(mtcars) %>% 
   select(-n_missing)
 ```
-
-
-## MPG and a Type of Cars
-The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
-
+# Visualization #1
 
 ```{r}
-ggplot(data = mpg) +
-  geom_boxplot(aes(x = class, y = hwy, fill = class),
-               show.legend = F) +
-  labs(x = "Class", y = "Highway\nMPG") 
+car_models <- rownames(mtcars)
+
+ggplot(mtcars, aes(x = reorder(car_models, -qsec), y = qsec)) +
+  geom_point(color = "blue") +
+  labs(title = "1/4 Mile Times by Car Name",
+       x = "Car Name",
+       y = "1/4 Mile Time") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+car_models <- rownames(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+
 ```
+
+## Explanation
+
+
+This graph gives a visual representation of the quarter mile times of various motor cars in descending order. 
+
+
+# Visualization #2
+```{r}
+ggplot(mtcars, aes(x = factor(cyl), y = qsec, fill = factor(cyl))) +
+  geom_boxplot(alpha = 0.7) +
+  geom_point(position = position_jitter(width = 0.3), color = "black", size = 2) +
+  labs(title = "1/4 Mile Time by Number of Cylinders",
+       x = "Number of Cylinders",
+       y = "1/4 Mile Time",
+       fill = "Number of Cylinders") +
+  scale_fill_discrete(name = "Number of Cylinders") +
+  theme_minimal()
+
+```
+## Explanation
+
+
+This graph allows you to visually see the difference in quarter mile time and how it varies by the number of cylinders in the vehicle. As you can see the vehicles with fewer cylinders can generally be seen with a slower quarter mile time.
+
+
+# Visualization #3
+```{r}
+ggplot(mtcars, aes(x = wt, y = qsec, color = cyl)) +
+  geom_point() +
+  labs(title = "Scatter Plot of Quarter Mile Time vs. Weight by Number of Cylinders", 
+       x = "Weight (1000 lbs)",
+       y = "Quarter Mile Time") +
+  scale_color_discrete(name = "Number of Cylinders")
+
+```
+## Explanation
+
+
+This visualization is similar to the last one except that this graph also shows the weight distribution among the vehicles, generally we can see that cars with more cylinders will be heavier than their counterparts.
+
+
+# Visualization #4
+```{r}
+ggplot(mtcars, aes(x = hp, y = qsec, color = factor(vs))) +
+  geom_point(size = 3) +
+  labs(title = "Quarter Mile Time by Horsepower and Engine Type",
+       x = "Horsepower",
+       y = "Quarter Mile Time") +
+  scale_color_discrete(name = "Engine Type", labels = c("V-shaped", "Straight")) +
+  theme_minimal()
+
+```
+## Explanation 
+
+
+Here we can decipher the quarter mile time in terms of the vehicles horse power and engine type, as we can see, as horse power grows, the quarter mile time goes down. At the same time most vehicles contain a V-Shaped engine that how the faster quarter mile times.
+
+
+# Visualization #5
+```{r} 
+library(dplyr)
+library(ggplot2)
+
+top_5_fastest <- mtcars %>%
+  arrange(qsec) %>%
+  head(5)
+
+print(top_5_fastest[, c("mpg", "cyl", "hp", "wt", "qsec")])
+
+top_5_fastest$car_names <- rownames(top_5_fastest)
+
+variables_to_plot <- c("cyl", "hp", "wt")
+plot_list <- lapply(variables_to_plot, function(var) {
+  ggplot(top_5_fastest, aes(x = reorder(car_names, qsec), y = get(var), fill = factor(cyl))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = paste("Top 5 Fastest Cars -", var),
+         x = "Car",
+         y = var,
+         fill = "Cylinders") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+})
+
+library(patchwork)
+plot_list[[1]] + plot_list[[2]] + plot_list[[3]]
+
+```
+## Explanation
+
+Finally, this visualization shows how 3 variables (weight, cylinders, and horsepower) differ in each fastest car (from left to right).
 
 
