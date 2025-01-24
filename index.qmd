@@ -18,7 +18,7 @@ about:
       href: https://github.com/rhorn15/rhorn15.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: Resume-Ryan-Horn.pdf
+      href: /Users/ryanm/Documents/Resume/Ryan Horn Resume.docx
     - icon: mailbox
       text: Email
       href: mailto:rmh14@geneseo.edu
