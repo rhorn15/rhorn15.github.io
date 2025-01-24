@@ -18,7 +18,7 @@
     "href": "project.html#summary-statistics",
     "title": "DANL Project",
     "section": "1.1 Summary Statistics",
-    "text": "1.1 Summary Statistics\n\nrmarkdown::paged_table(mtcars)\n\n\n\n  \n\n\n\n\n1.1.1 Summary Statistics\n\nskim(mtcars) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmtcars\n\n\nNumber of rows\n32\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n11\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nmpg\n1\n20.09\n6.03\n10.40\n15.43\n19.20\n22.80\n33.90\n▃▇▅▁▂\n\n\ncyl\n1\n6.19\n1.79\n4.00\n4.00\n6.00\n8.00\n8.00\n▆▁▃▁▇\n\n\ndisp\n1\n230.72\n123.94\n71.10\n120.83\n196.30\n326.00\n472.00\n▇▃▃▃▂\n\n\nhp\n1\n146.69\n68.56\n52.00\n96.50\n123.00\n180.00\n335.00\n▇▇▆▃▁\n\n\ndrat\n1\n3.60\n0.53\n2.76\n3.08\n3.70\n3.92\n4.93\n▇▃▇▅▁\n\n\nwt\n1\n3.22\n0.98\n1.51\n2.58\n3.33\n3.61\n5.42\n▃▃▇▁▂\n\n\nqsec\n1\n17.85\n1.79\n14.50\n16.89\n17.71\n18.90\n22.90\n▃▇▇▂▁\n\n\nvs\n1\n0.44\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\nam\n1\n0.41\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\ngear\n1\n3.69\n0.74\n3.00\n3.00\n4.00\n4.00\n5.00\n▇▁▆▁▂\n\n\ncarb\n1\n2.81\n1.62\n1.00\n2.00\n2.00\n4.00\n8.00\n▇▂▅▁▁"
+    "text": "1.1 Summary Statistics\n\nrmarkdown::paged_table(mtcars)\n\n\n  \n\n\n\n\n1.1.1 Summary Statistics\n\nskim(mtcars) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmtcars\n\n\nNumber of rows\n32\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n11\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nmpg\n1\n20.09\n6.03\n10.40\n15.43\n19.20\n22.80\n33.90\n▃▇▅▁▂\n\n\ncyl\n1\n6.19\n1.79\n4.00\n4.00\n6.00\n8.00\n8.00\n▆▁▃▁▇\n\n\ndisp\n1\n230.72\n123.94\n71.10\n120.83\n196.30\n326.00\n472.00\n▇▃▃▃▂\n\n\nhp\n1\n146.69\n68.56\n52.00\n96.50\n123.00\n180.00\n335.00\n▇▇▆▃▁\n\n\ndrat\n1\n3.60\n0.53\n2.76\n3.08\n3.70\n3.92\n4.93\n▇▃▇▅▁\n\n\nwt\n1\n3.22\n0.98\n1.51\n2.58\n3.33\n3.61\n5.42\n▃▃▇▁▂\n\n\nqsec\n1\n17.85\n1.79\n14.50\n16.89\n17.71\n18.90\n22.90\n▃▇▇▂▁\n\n\nvs\n1\n0.44\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\nam\n1\n0.41\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\ngear\n1\n3.69\n0.74\n3.00\n3.00\n4.00\n4.00\n5.00\n▇▁▆▁▂\n\n\ncarb\n1\n2.81\n1.62\n1.00\n2.00\n2.00\n4.00\n8.00\n▇▂▅▁▁"
   },
   {
     "objectID": "project.html#explanation",
@@ -137,7 +137,7 @@
     "href": "posts/Spotify/index.html",
     "title": "Spotify Analytics",
     "section": "",
-    "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
+    "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
   },
   {
     "objectID": "posts/Restaurant Inspection/index.html",
@@ -214,14 +214,14 @@
     "href": "index.html",
     "title": "Ryan Horn",
     "section": "",
-    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 years. I love data analytics and hope to make a career out of it."
+    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 1/2 years. I love data analytics and hope to make a career out of it."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
     "title": "Ryan Horn",
     "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - Dec 2025"
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - May 2026"
   },
   {
     "objectID": "index.html#experience",
