@@ -11,6 +11,8 @@ website:
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
+      - text: Python Data Analysis 
+        href: pyda.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
 
