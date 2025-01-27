@@ -35,67 +35,109 @@
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ryan Horn",
+    "objectID": "pandas_basics.html#creating-a-series",
+    "href": "pandas_basics.html#creating-a-series",
+    "title": "Pandas Basics",
+    "section": "Creating a Series",
+    "text": "Creating a Series\n\n\n# Creating a Series from a list\ndata = [10, 20, 30, 40, 50]\nseries = pd.Series(data)\nseries\n\n\n\n\n\n\n\n\n0\n\n\n\n\n0\n10\n\n\n1\n20\n\n\n2\n30\n\n\n3\n40\n\n\n4\n50\n\n\n\n\ndtype: int64"
+  },
+  {
+    "objectID": "pandas_basics.html#creating-a-dataframe",
+    "href": "pandas_basics.html#creating-a-dataframe",
+    "title": "Pandas Basics",
+    "section": "Creating a DataFrame",
+    "text": "Creating a DataFrame\n\n\n# Creating a DataFrame from a dictionary\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"Los Angeles\", \"Chicago\"]\n}\ndf = pd.DataFrame(data)\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n0\nAlice\n25\nNew York\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+  },
+  {
+    "objectID": "pandas_basics.html#exploring-data",
+    "href": "pandas_basics.html#exploring-data",
+    "title": "Pandas Basics",
+    "section": "Exploring Data",
+    "text": "Exploring Data\n\n\n# Display the first few rows\ndf.head()\n\n# Display the shape of the DataFrame\nprint(\"Shape:\", df.shape)\n\n# Display summary statistics\ndf.describe()\n\nShape: (3, 3)\n\n\n\n  \n    \n\n\n\n\n\n\nAge\n\n\n\n\ncount\n3.0\n\n\nmean\n30.0\n\n\nstd\n5.0\n\n\nmin\n25.0\n\n\n25%\n27.5\n\n\n50%\n30.0\n\n\n75%\n32.5\n\n\nmax\n35.0"
+  },
+  {
+    "objectID": "pandas_basics.html#selecting-data",
+    "href": "pandas_basics.html#selecting-data",
+    "title": "Pandas Basics",
+    "section": "Selecting Data",
+    "text": "Selecting Data\n\n# Selecting a single column\ndf[\"Name\"]\n\n\n\n\n\n\n\n\nName\n\n\n\n\n0\nAlice\n\n\n1\nBob\n\n\n2\nCharlie\n\n\n\n\ndtype: object\n\n\n\n# Selecting multiple columns\ndf[[\"Name\", \"City\"]]\n\n\n  \n    \n\n\n\n\n\n\nName\nCity\n\n\n\n\n0\nAlice\nNew York\n\n\n1\nBob\nLos Angeles\n\n\n2\nCharlie\nChicago\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\n# Selecting rows by index\ndf.iloc[0]\n\n\n\n\n\n\n\n\n0\n\n\n\n\nName\nAlice\n\n\nAge\n25\n\n\nCity\nNew York\n\n\n\n\ndtype: object"
+  },
+  {
+    "objectID": "pandas_basics.html#filtering-data",
+    "href": "pandas_basics.html#filtering-data",
+    "title": "Pandas Basics",
+    "section": "Filtering Data",
+    "text": "Filtering Data\n\n# Filtering rows where Age is greater than 25\nfiltered_df = df[df[\"Age\"] &gt; 25]\nfiltered_df\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+  },
+  {
+    "objectID": "pandas_basics.html#adding-a-new-column",
+    "href": "pandas_basics.html#adding-a-new-column",
+    "title": "Pandas Basics",
+    "section": "Adding a New Column",
+    "text": "Adding a New Column\n\n\n# Adding a new column\ndf[\"Salary\"] = [50000, 60000, 70000]\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\nSalary\n\n\n\n\n0\nAlice\n25\nNew York\n50000\n\n\n1\nBob\n30\nLos Angeles\n60000\n\n\n2\nCharlie\n35\nChicago\n70000\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\n    ## Conclusion\n\n    This notebook covers the basic operations of pandas. You can explore more advanced features like merging,\n    joining, and working with time series data in pandas documentation: https://pandas.pydata.org/docs/"
+  },
+  {
+    "objectID": "quarto-template.html",
+    "href": "quarto-template.html",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
     "section": "",
-    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 1/2 years. I love data analytics and hope to make a career out of it!"
+    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\nThe number of variables is 4; the number of observations is 28,947.\nRoses are red\nviolets are blue."
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ryan Horn",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - May 2026"
+    "objectID": "quarto-template.html#data-summary",
+    "href": "quarto-template.html#data-summary",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.1 Data Summary",
+    "text": "2.1 Data Summary\n\nSummary statistics (Use skimr::skim())"
   },
   {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ryan Horn",
-    "section": "Experience",
-    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
+    "objectID": "quarto-template.html#data-visualization",
+    "href": "quarto-template.html#data-visualization",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.2 Data Visualization",
+    "text": "2.2 Data Visualization\n\noj %&gt;% \n  ggplot(aes(x = log(sales), \n             y = log(price),\n             color = brand)) +\n  geom_point(alpha = .1) +\n  geom_smooth(method = lm, se = F) +\n  facet_wrap(.~ad) +\n  theme_bw() +\n  theme(legend.position = 'top')"
   },
   {
-    "objectID": "danl-210-python-basic.html",
-    "href": "danl-210-python-basic.html",
-    "title": "Python Basics",
+    "objectID": "quarto-template.html#data-transformation",
+    "href": "quarto-template.html#data-transformation",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.3 Data Transformation",
+    "text": "2.3 Data Transformation\n\nob_sum1 &lt;- oj %&gt;% \n  group_by(brand, ad) %&gt;% \n  summarise(sales_tot = sum(sales, na.rm = T),\n            price_mean = round(mean(price, na.rm = T), 2))"
+  },
+  {
+    "objectID": "quarto-template.html#analysis",
+    "href": "quarto-template.html#analysis",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.4 Analysis",
+    "text": "2.4 Analysis"
+  },
+  {
+    "objectID": "quarto-template.html#quotes",
+    "href": "quarto-template.html#quotes",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.5 Quotes",
+    "text": "2.5 Quotes\n\nQuote with &gt;\n\n\n“The truth is rarely pure and never simple.”\n— Oscar Wilde"
+  },
+  {
+    "objectID": "quarto-template.html#inserting-figures",
+    "href": "quarto-template.html#inserting-figures",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.6 Inserting Figures",
+    "text": "2.6 Inserting Figures\nFor a demonstration of a DANL tiger, see Figure 1.\n\n\n\n\n\n\n\n\nFigure 1: DANL Tiger"
+  },
+  {
+    "objectID": "quarto-template.html#inserting-a-html-page",
+    "href": "quarto-template.html#inserting-a-html-page",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.7 Inserting a HTML page",
+    "text": "2.7 Inserting a HTML page"
+  },
+  {
+    "objectID": "seaborn_basics.html",
+    "href": "seaborn_basics.html",
+    "title": "Seaborn Example",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "danl-210-python-basic.html#what-is-python",
-    "href": "danl-210-python-basic.html#what-is-python",
-    "title": "Python Basics",
-    "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
-  },
-  {
-    "objectID": "danl-210-python-basic.html#variables-and-data-types",
-    "href": "danl-210-python-basic.html#variables-and-data-types",
-    "title": "Python Basics",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "danl-210-python-basic.html#control-structures",
-    "href": "danl-210-python-basic.html#control-structures",
-    "title": "Python Basics",
-    "section": "",
-    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
-  },
-  {
-    "objectID": "danl-210-python-basic.html#functions",
-    "href": "danl-210-python-basic.html#functions",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
-  },
-  {
-    "objectID": "danl-210-python-basic.html#lists-and-dictionaries",
-    "href": "danl-210-python-basic.html#lists-and-dictionaries",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n# Sample data\ndata = {\n    'Category': ['A', 'B', 'C', 'D'],\n    'Values': [23, 45, 56, 78]\n}\ndf = pd.DataFrame(data)\n\n# Create a barplot\nsns.set(style=\"whitegrid\")  # Optional: Set a clean grid style\nplt.figure(figsize=(8, 6))  # Set the figure size\nsns.barplot(data=df, x='Category', y='Values', palette='viridis')\n\n# Customize the plot\nplt.title(\"Bar Plot Example\", fontsize=16)\nplt.xlabel(\"Category\", fontsize=12)\nplt.ylabel(\"Values\", fontsize=12)\n\n# Show the plot\nplt.show()\n\nFutureWarning: \n\nPassing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.\n\n  sns.barplot(data=df, x='Category', y='Values', palette='viridis')"
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -182,60 +224,67 @@
     "text": "Q2g\n\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nAnswer:\n\npasser_summary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(\n    mean_epa = mean(epa, na.rm = TRUE),\n    n_pass = n()\n  )\n\n`summarise()` has grouped output by 'posteam'. You can override using the\n`.groups` argument.\n\nquantile_threshold &lt;- quantile(passer_summary$n_pass, 0.75)\n\ntop_passers &lt;- passer_summary %&gt;%\n  filter(n_pass &gt;= quantile_threshold) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)\n\nprint(top_passers)\n\n# A tibble: 29 × 4\n# Groups:   posteam [29]\n   posteam passer     mean_epa n_pass\n   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;  &lt;int&gt;\n 1 ARI     K.Murray     0.0163    465\n 2 ATL     M.Mariota    0.0251    370\n 3 BAL     L.Jackson    0.0549    398\n 4 BUF     J.Allen      0.172     785\n 5 CHI     J.Fields    -0.0455    469\n 6 CIN     J.Burrow     0.153     854\n 7 CLE     J.Brissett   0.0912    445\n 8 DAL     D.Prescott   0.147     529\n 9 DEN     R.Wilson    -0.0163    609\n10 DET     J.Goff       0.171     661\n# ℹ 19 more rows"
   },
   {
-    "objectID": "quarto-template.html",
-    "href": "quarto-template.html",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "objectID": "danl-210-python-basic.html",
+    "href": "danl-210-python-basic.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\nThe number of variables is 4; the number of observations is 28,947.\nRoses are red\nviolets are blue."
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "quarto-template.html#data-summary",
-    "href": "quarto-template.html#data-summary",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.1 Data Summary",
-    "text": "2.1 Data Summary\n\nSummary statistics (Use skimr::skim())"
+    "objectID": "danl-210-python-basic.html#what-is-python",
+    "href": "danl-210-python-basic.html#what-is-python",
+    "title": "Python Basics",
+    "section": "",
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "quarto-template.html#data-visualization",
-    "href": "quarto-template.html#data-visualization",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.2 Data Visualization",
-    "text": "2.2 Data Visualization\n\noj %&gt;% \n  ggplot(aes(x = log(sales), \n             y = log(price),\n             color = brand)) +\n  geom_point(alpha = .1) +\n  geom_smooth(method = lm, se = F) +\n  facet_wrap(.~ad) +\n  theme_bw() +\n  theme(legend.position = 'top')"
+    "objectID": "danl-210-python-basic.html#variables-and-data-types",
+    "href": "danl-210-python-basic.html#variables-and-data-types",
+    "title": "Python Basics",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "quarto-template.html#data-transformation",
-    "href": "quarto-template.html#data-transformation",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.3 Data Transformation",
-    "text": "2.3 Data Transformation\n\nob_sum1 &lt;- oj %&gt;% \n  group_by(brand, ad) %&gt;% \n  summarise(sales_tot = sum(sales, na.rm = T),\n            price_mean = round(mean(price, na.rm = T), 2))"
+    "objectID": "danl-210-python-basic.html#control-structures",
+    "href": "danl-210-python-basic.html#control-structures",
+    "title": "Python Basics",
+    "section": "",
+    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
   },
   {
-    "objectID": "quarto-template.html#analysis",
-    "href": "quarto-template.html#analysis",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.4 Analysis",
-    "text": "2.4 Analysis"
+    "objectID": "danl-210-python-basic.html#functions",
+    "href": "danl-210-python-basic.html#functions",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
   },
   {
-    "objectID": "quarto-template.html#quotes",
-    "href": "quarto-template.html#quotes",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.5 Quotes",
-    "text": "2.5 Quotes\n\nQuote with &gt;\n\n\n“The truth is rarely pure and never simple.”\n— Oscar Wilde"
+    "objectID": "danl-210-python-basic.html#lists-and-dictionaries",
+    "href": "danl-210-python-basic.html#lists-and-dictionaries",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "quarto-template.html#inserting-figures",
-    "href": "quarto-template.html#inserting-figures",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.6 Inserting Figures",
-    "text": "2.6 Inserting Figures\nFor a demonstration of a DANL tiger, see Figure 1.\n\n\n\n\n\n\n\n\nFigure 1: DANL Tiger"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ryan Horn",
+    "section": "",
+    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 1/2 years. I love data analytics and hope to make a career out of it!"
   },
   {
-    "objectID": "quarto-template.html#inserting-a-html-page",
-    "href": "quarto-template.html#inserting-a-html-page",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.7 Inserting a HTML page",
-    "text": "2.7 Inserting a HTML page"
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ryan Horn",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - May 2026"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ryan Horn",
+    "section": "Experience",
+    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
   },
   {
     "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
