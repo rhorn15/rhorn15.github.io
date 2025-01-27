@@ -7,8 +7,10 @@ website:
   navbar:
     pinned: true
     left:
-      - text: Project
+      - text: Project 1
         href: project.qmd
+      - text: Project 2
+        href: danl-210-python-basic.ipynb
       - text: Blog
         href: blog-listing.qmd
       - text: Python Data Analysis 
