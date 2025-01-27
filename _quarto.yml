@@ -10,7 +10,7 @@ website:
       - text: Project 1
         href: project.qmd
       - text: Project 2
-        href: danl-210-python-basic.ipynb
+        href: danl_proj_nba.ipynb
       - text: Blog
         href: blog-listing.qmd
       - text: Python Data Analysis 

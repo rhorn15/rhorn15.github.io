@@ -1,129 +1,129 @@
 [
   {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "DANL Project",
+    "objectID": "danl_proj_nba.html#salary-distribution-among-teams",
+    "href": "danl_proj_nba.html#salary-distribution-among-teams",
+    "title": "Data Analysis Project",
+    "section": "Salary Distribution Among Teams",
+    "text": "Salary Distribution Among Teams\nLet’s start with the salary distribution among teams using seaborn for visualization. ​​\n\n\n# Handle missing values in 'Salary' by replacing them with the median salary\nmedian_salary = nba['Salary'].median()\nnba['Salary'].fillna(median_salary, inplace=True)\n\n/var/folders/_m/d6jf0jhd2zzdfd5kzdhl_24w0000gn/T/ipykernel_79892/1671011424.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\nThe behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n\nFor example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n\n\n  nba['Salary'].fillna(median_salary, inplace=True)\n\n\n\n# Set the aesthetic style of the plots\nsns.set_style(\"whitegrid\")\n\n# Calculate total salary by team\nteam_salary = (\n    nba\n    .groupby('Team')['Salary']\n    .sum()\n    .reset_index()\n    .sort_values(by='Salary', ascending=False)\n)\n\n# Plot total salary by team\nplt.figure(figsize=(10, 16))\nsns.barplot(data = team_salary,\n            x = 'Salary', y = 'Team',\n            palette = 'coolwarm')\nplt.title('Total Salary Distribution Among NBA Teams')\nplt.xlabel('Total Salary')\nplt.ylabel('Team')\nplt.xticks(rotation=45)\nplt.show()\n\n\n\n\n\n\n\n\nThe visualization above displays the total salary distribution among NBA teams, with teams sorted by their total salary expenditure. This bar plot reveals which teams are the biggest spenders on player salaries and which are more conservative. The color gradient provides a visual cue to easily distinguish between the higher and lower spending teams.\nNotice that Portland Trail Blazers has the highest total salary followed by Golden State Warriors and Philadelphia 76ers, and Memphis Grizzlies has the lowest total salary."
+  },
+  {
+    "objectID": "danl_proj_nba.html#player-age-distribution",
+    "href": "danl_proj_nba.html#player-age-distribution",
+    "title": "Data Analysis Project",
+    "section": "Player Age Distribution",
+    "text": "Player Age Distribution\nNext, let’s explore the Player Age Distribution across the NBA. We’ll create a histogram to visualize how player ages are distributed, which will help us understand if the league trends younger, older, or has a balanced age mix. ​​\n\n# Convert 'Birthday' column to datetime format\nfrom dateutil import parser\n# nba['Birthday'] = nba['Birthday'].apply(lambda x: parser.parse(x))\n\n# Now, let's calculate the age of each player\n# nba['Age'] = (datetime.now() - nba['Birthday']).dt.days // 365\n\n# Plot the age distribution of NBA players\nplt.figure(figsize=(10, 6))\nsns.histplot(nba['Age'],\n             bins = 15,\n             kde = True,\n             color = 'skyblue')\nplt.title('Age Distribution of NBA Players')\nplt.xlabel('Age')\nplt.ylabel('Count')\nplt.show()\n\n\n/Users/bchoe/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.\n  with pd.option_context('mode.use_inf_as_na', True):\n\n\n\n\n\n\n\n\n\nThe histogram above shows the age distribution of NBA players, with a kernel density estimate (KDE) overlay to indicate the distribution shape. The plot helps identify the common ages for NBA players and whether there are significant numbers of very young or older players.\nNotice that the majority of players fall within an age range from 24 to 34. There are few players whose age is above 40."
+  },
+  {
+    "objectID": "danl_proj_nba.html#position-wise-salary-insights",
+    "href": "danl_proj_nba.html#position-wise-salary-insights",
+    "title": "Data Analysis Project",
+    "section": "Position-wise Salary Insights",
+    "text": "Position-wise Salary Insights\nMoving on to Position-wise Salary Insights, we’ll examine how average salaries differ across player positions. This analysis could reveal which positions are typically higher-paid, potentially reflecting their value on the basketball court. Let’s create a box plot to visualize the salary distribution for each position. ​​\n\n# Plot salary distribution by player position\nplt.figure(figsize=(10, 6))\nsns.boxplot(data = nba,\n            x = 'Position', y = 'Salary',\n            palette = 'Set2')\nplt.title('Salary Distribution by Position')\nplt.xlabel('Position')\nplt.ylabel('Salary')\nplt.show()\n\n\n\n\n\n\n\n\nThe box plot above illustrates the salary distribution by player position, showcasing the variation in salaries among different positions within the NBA. PG-SG has the highest median salary."
+  },
+  {
+    "objectID": "danl_proj_nba.html#top-10-highest-paid-players",
+    "href": "danl_proj_nba.html#top-10-highest-paid-players",
+    "title": "Data Analysis Project",
+    "section": "Top 10 Highest Paid Players",
+    "text": "Top 10 Highest Paid Players\nLastly, we’ll identify the Top 10 Highest Paid Players in the NBA. Let’s visualize this information.\n\n# Identify the top 10 highest paid players\ntop_10_salaries = nba.sort_values(by='Salary', ascending=False).head(10)\n\n# Plot the top 10 highest paid players\nplt.figure(figsize=(12, 8))\nsns.barplot(data = top_10_salaries,\n            x = 'Salary', y = 'PlayerName',\n            palette = 'viridis')\nplt.title('Top 10 Highest Paid NBA Players')\nplt.xlabel('Salary')\nplt.ylabel('Player')\nplt.show()\n\n\n\n\n\n\n\n\nThe bar plot above reveals the top 10 highest-paid NBA players, showcasing those who stand at the pinnacle of the league in terms of salary. This visualization not only highlights the star players who command the highest salaries but also may reflect their marketability, performance, and contribution to their respective teams."
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "Ryan Horn’s Blog",
     "section": "",
-    "text": "About this project 👏\nIn this project my group and I are using a data set of motor cars to determine the fastest cars, then we will decipher some parameters by what makes them the best."
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "project.html#introduction",
-    "href": "project.html#introduction",
-    "title": "DANL Project",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ryan Horn",
     "section": "",
-    "text": "About this project 👏\nIn this project my group and I are using a data set of motor cars to determine the fastest cars, then we will decipher some parameters by what makes them the best."
+    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 1/2 years. I love data analytics and hope to make a career out of it!"
   },
   {
-    "objectID": "project.html#summary-statistics",
-    "href": "project.html#summary-statistics",
-    "title": "DANL Project",
-    "section": "1.1 Summary Statistics",
-    "text": "1.1 Summary Statistics\n\nrmarkdown::paged_table(mtcars)\n\n\n  \n\n\n\n\n1.1.1 Summary Statistics\n\nskim(mtcars) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmtcars\n\n\nNumber of rows\n32\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n11\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nmpg\n1\n20.09\n6.03\n10.40\n15.43\n19.20\n22.80\n33.90\n▃▇▅▁▂\n\n\ncyl\n1\n6.19\n1.79\n4.00\n4.00\n6.00\n8.00\n8.00\n▆▁▃▁▇\n\n\ndisp\n1\n230.72\n123.94\n71.10\n120.83\n196.30\n326.00\n472.00\n▇▃▃▃▂\n\n\nhp\n1\n146.69\n68.56\n52.00\n96.50\n123.00\n180.00\n335.00\n▇▇▆▃▁\n\n\ndrat\n1\n3.60\n0.53\n2.76\n3.08\n3.70\n3.92\n4.93\n▇▃▇▅▁\n\n\nwt\n1\n3.22\n0.98\n1.51\n2.58\n3.33\n3.61\n5.42\n▃▃▇▁▂\n\n\nqsec\n1\n17.85\n1.79\n14.50\n16.89\n17.71\n18.90\n22.90\n▃▇▇▂▁\n\n\nvs\n1\n0.44\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\nam\n1\n0.41\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\ngear\n1\n3.69\n0.74\n3.00\n3.00\n4.00\n4.00\n5.00\n▇▁▆▁▂\n\n\ncarb\n1\n2.81\n1.62\n1.00\n2.00\n2.00\n4.00\n8.00\n▇▂▅▁▁"
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ryan Horn",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - May 2026"
   },
   {
-    "objectID": "project.html#explanation",
-    "href": "project.html#explanation",
-    "title": "DANL Project",
-    "section": "2.1 Explanation",
-    "text": "2.1 Explanation\nThis graph gives a visual representation of the quarter mile times of various motor cars in descending order."
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ryan Horn",
+    "section": "Experience",
+    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
   },
   {
-    "objectID": "project.html#explanation-1",
-    "href": "project.html#explanation-1",
-    "title": "DANL Project",
-    "section": "3.1 Explanation",
-    "text": "3.1 Explanation\nThis graph allows you to visually see the difference in quarter mile time and how it varies by the number of cylinders in the vehicle. As you can see the vehicles with fewer cylinders can generally be seen with a slower quarter mile time."
-  },
-  {
-    "objectID": "project.html#explanation-2",
-    "href": "project.html#explanation-2",
-    "title": "DANL Project",
-    "section": "4.1 Explanation",
-    "text": "4.1 Explanation\nThis visualization is similar to the last one except that this graph also shows the weight distribution among the vehicles, generally we can see that cars with more cylinders will be heavier than their counterparts."
-  },
-  {
-    "objectID": "project.html#explanation-3",
-    "href": "project.html#explanation-3",
-    "title": "DANL Project",
-    "section": "5.1 Explanation",
-    "text": "5.1 Explanation\nHere we can decipher the quarter mile time in terms of the vehicles horse power and engine type, as we can see, as horse power grows, the quarter mile time goes down. At the same time most vehicles contain a V-Shaped engine that how the faster quarter mile times."
-  },
-  {
-    "objectID": "project.html#explanation-4",
-    "href": "project.html#explanation-4",
-    "title": "DANL Project",
-    "section": "6.1 Explanation",
-    "text": "6.1 Explanation\nFinally, this visualization shows how 3 variables (weight, cylinders, and horsepower) differ in each fastest car (from left to right)."
-  },
-  {
-    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
-    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
-    "title": "danl200-hw5-Horn-Ryan.qmd",
+    "objectID": "danl-210-python-basic.html",
+    "href": "danl-210-python-basic.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
-    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
-    "title": "danl200-hw5-Horn-Ryan.qmd",
+    "objectID": "danl-210-python-basic.html#what-is-python",
+    "href": "danl-210-python-basic.html#what-is-python",
+    "title": "Python Basics",
     "section": "",
-    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "quarto-template.html",
-    "href": "quarto-template.html",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "objectID": "danl-210-python-basic.html#variables-and-data-types",
+    "href": "danl-210-python-basic.html#variables-and-data-types",
+    "title": "Python Basics",
     "section": "",
-    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\nThe number of variables is 4; the number of observations is 28,947.\nRoses are red\nviolets are blue."
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "quarto-template.html#data-summary",
-    "href": "quarto-template.html#data-summary",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.1 Data Summary",
-    "text": "2.1 Data Summary\n\nSummary statistics (Use skimr::skim())"
+    "objectID": "danl-210-python-basic.html#control-structures",
+    "href": "danl-210-python-basic.html#control-structures",
+    "title": "Python Basics",
+    "section": "",
+    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
   },
   {
-    "objectID": "quarto-template.html#data-visualization",
-    "href": "quarto-template.html#data-visualization",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.2 Data Visualization",
-    "text": "2.2 Data Visualization\n\noj %&gt;% \n  ggplot(aes(x = log(sales), \n             y = log(price),\n             color = brand)) +\n  geom_point(alpha = .1) +\n  geom_smooth(method = lm, se = F) +\n  facet_wrap(.~ad) +\n  theme_bw() +\n  theme(legend.position = 'top')"
+    "objectID": "danl-210-python-basic.html#functions",
+    "href": "danl-210-python-basic.html#functions",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
   },
   {
-    "objectID": "quarto-template.html#data-transformation",
-    "href": "quarto-template.html#data-transformation",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.3 Data Transformation",
-    "text": "2.3 Data Transformation\n\nob_sum1 &lt;- oj %&gt;% \n  group_by(brand, ad) %&gt;% \n  summarise(sales_tot = sum(sales, na.rm = T),\n            price_mean = round(mean(price, na.rm = T), 2))"
+    "objectID": "danl-210-python-basic.html#lists-and-dictionaries",
+    "href": "danl-210-python-basic.html#lists-and-dictionaries",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "quarto-template.html#analysis",
-    "href": "quarto-template.html#analysis",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.4 Analysis",
-    "text": "2.4 Analysis"
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!"
   },
   {
-    "objectID": "quarto-template.html#quotes",
-    "href": "quarto-template.html#quotes",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.5 Quotes",
-    "text": "2.5 Quotes\n\nQuote with &gt;\n\n\n“The truth is rarely pure and never simple.”\n— Oscar Wilde"
+    "objectID": "posts/Spotify/index.html",
+    "href": "posts/Spotify/index.html",
+    "title": "Spotify Analytics",
+    "section": "",
+    "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
   },
   {
-    "objectID": "quarto-template.html#inserting-figures",
-    "href": "quarto-template.html#inserting-figures",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.6 Inserting Figures",
-    "text": "2.6 Inserting Figures\nFor a demonstration of a DANL tiger, see Figure 1.\n\n\n\n\n\n\n\n\nFigure 1: DANL Tiger"
+    "objectID": "posts/Restaurant Inspection/index.html",
+    "href": "posts/Restaurant Inspection/index.html",
+    "title": "Restaurant Inspections",
+    "section": "",
+    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
   },
   {
-    "objectID": "quarto-template.html#inserting-a-html-page",
-    "href": "quarto-template.html#inserting-a-html-page",
-    "title": "DANL 200: Introduction to Data AnalyticsProject",
-    "section": "2.7 Inserting a HTML page",
-    "text": "2.7 Inserting a HTML page"
+    "objectID": "posts/Beer Markets/index.html",
+    "href": "posts/Beer Markets/index.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "Here is some analytics in relation to Beer Markets!\n\n\n\n\n\n\n\n\n\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n\n\n\n\n\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted."
   },
   {
     "objectID": "posts/NFL 2022 Data/index.html",
@@ -182,101 +182,129 @@
     "text": "Q2g\n\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nAnswer:\n\npasser_summary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(\n    mean_epa = mean(epa, na.rm = TRUE),\n    n_pass = n()\n  )\n\n`summarise()` has grouped output by 'posteam'. You can override using the\n`.groups` argument.\n\nquantile_threshold &lt;- quantile(passer_summary$n_pass, 0.75)\n\ntop_passers &lt;- passer_summary %&gt;%\n  filter(n_pass &gt;= quantile_threshold) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)\n\nprint(top_passers)\n\n# A tibble: 29 × 4\n# Groups:   posteam [29]\n   posteam passer     mean_epa n_pass\n   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;  &lt;int&gt;\n 1 ARI     K.Murray     0.0163    465\n 2 ATL     M.Mariota    0.0251    370\n 3 BAL     L.Jackson    0.0549    398\n 4 BUF     J.Allen      0.172     785\n 5 CHI     J.Fields    -0.0455    469\n 6 CIN     J.Burrow     0.153     854\n 7 CLE     J.Brissett   0.0912    445\n 8 DAL     D.Prescott   0.147     529\n 9 DEN     R.Wilson    -0.0163    609\n10 DET     J.Goff       0.171     661\n# ℹ 19 more rows"
   },
   {
-    "objectID": "posts/Beer Markets/index.html",
-    "href": "posts/Beer Markets/index.html",
-    "title": "Beer Markets",
+    "objectID": "quarto-template.html",
+    "href": "quarto-template.html",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
     "section": "",
-    "text": "Here is some analytics in relation to Beer Markets!\n\n\n\n\n\n\n\n\n\n\nThis scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the total dollar spent on each beer brand.\n\n\n\n\n\n\n\n\n\nThis box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted."
+    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\nThe number of variables is 4; the number of observations is 28,947.\nRoses are red\nviolets are blue."
   },
   {
-    "objectID": "posts/Restaurant Inspection/index.html",
-    "href": "posts/Restaurant Inspection/index.html",
-    "title": "Restaurant Inspections",
+    "objectID": "quarto-template.html#data-summary",
+    "href": "quarto-template.html#data-summary",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.1 Data Summary",
+    "text": "2.1 Data Summary\n\nSummary statistics (Use skimr::skim())"
+  },
+  {
+    "objectID": "quarto-template.html#data-visualization",
+    "href": "quarto-template.html#data-visualization",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.2 Data Visualization",
+    "text": "2.2 Data Visualization\n\noj %&gt;% \n  ggplot(aes(x = log(sales), \n             y = log(price),\n             color = brand)) +\n  geom_point(alpha = .1) +\n  geom_smooth(method = lm, se = F) +\n  facet_wrap(.~ad) +\n  theme_bw() +\n  theme(legend.position = 'top')"
+  },
+  {
+    "objectID": "quarto-template.html#data-transformation",
+    "href": "quarto-template.html#data-transformation",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.3 Data Transformation",
+    "text": "2.3 Data Transformation\n\nob_sum1 &lt;- oj %&gt;% \n  group_by(brand, ad) %&gt;% \n  summarise(sales_tot = sum(sales, na.rm = T),\n            price_mean = round(mean(price, na.rm = T), 2))"
+  },
+  {
+    "objectID": "quarto-template.html#analysis",
+    "href": "quarto-template.html#analysis",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.4 Analysis",
+    "text": "2.4 Analysis"
+  },
+  {
+    "objectID": "quarto-template.html#quotes",
+    "href": "quarto-template.html#quotes",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.5 Quotes",
+    "text": "2.5 Quotes\n\nQuote with &gt;\n\n\n“The truth is rarely pure and never simple.”\n— Oscar Wilde"
+  },
+  {
+    "objectID": "quarto-template.html#inserting-figures",
+    "href": "quarto-template.html#inserting-figures",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.6 Inserting Figures",
+    "text": "2.6 Inserting Figures\nFor a demonstration of a DANL tiger, see Figure 1.\n\n\n\n\n\n\n\n\nFigure 1: DANL Tiger"
+  },
+  {
+    "objectID": "quarto-template.html#inserting-a-html-page",
+    "href": "quarto-template.html#inserting-a-html-page",
+    "title": "DANL 200: Introduction to Data AnalyticsProject",
+    "section": "2.7 Inserting a HTML page",
+    "text": "2.7 Inserting a HTML page"
+  },
+  {
+    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
+    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
+    "title": "danl200-hw5-Horn-Ryan.qmd",
     "section": "",
-    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
+    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
   },
   {
-    "objectID": "posts/Spotify/index.html",
-    "href": "posts/Spotify/index.html",
-    "title": "Spotify Analytics",
+    "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
+    "href": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html#q1a",
+    "title": "danl200-hw5-Horn-Ryan.qmd",
     "section": "",
-    "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
+    "text": "Below is a link to my GitHub repository.\nhref: https://github.com/rhorn15/rhorn15.github.io\nBelow is a link to my website\nhref:\nhttps://rhorn15.github.io/\nThe answers for Q2 of the homework can be found in the blog section of my website or right here.\nhref: https://rhorn15.github.io/posts/NFL%202022%20Data/"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "DANL Project",
     "section": "",
-    "text": "Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!"
+    "text": "About this project 👏\nIn this project my group and I are using a data set of motor cars to determine the fastest cars, then we will decipher some parameters by what makes them the best."
   },
   {
-    "objectID": "danl-210-python-basic.html",
-    "href": "danl-210-python-basic.html",
-    "title": "Python Basics",
+    "objectID": "project.html#introduction",
+    "href": "project.html#introduction",
+    "title": "DANL Project",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "About this project 👏\nIn this project my group and I are using a data set of motor cars to determine the fastest cars, then we will decipher some parameters by what makes them the best."
   },
   {
-    "objectID": "danl-210-python-basic.html#what-is-python",
-    "href": "danl-210-python-basic.html#what-is-python",
-    "title": "Python Basics",
-    "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
+    "objectID": "project.html#summary-statistics",
+    "href": "project.html#summary-statistics",
+    "title": "DANL Project",
+    "section": "1.1 Summary Statistics",
+    "text": "1.1 Summary Statistics\n\nrmarkdown::paged_table(mtcars)\n\n\n  \n\n\n\n\n1.1.1 Summary Statistics\n\nskim(mtcars) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmtcars\n\n\nNumber of rows\n32\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n11\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nmpg\n1\n20.09\n6.03\n10.40\n15.43\n19.20\n22.80\n33.90\n▃▇▅▁▂\n\n\ncyl\n1\n6.19\n1.79\n4.00\n4.00\n6.00\n8.00\n8.00\n▆▁▃▁▇\n\n\ndisp\n1\n230.72\n123.94\n71.10\n120.83\n196.30\n326.00\n472.00\n▇▃▃▃▂\n\n\nhp\n1\n146.69\n68.56\n52.00\n96.50\n123.00\n180.00\n335.00\n▇▇▆▃▁\n\n\ndrat\n1\n3.60\n0.53\n2.76\n3.08\n3.70\n3.92\n4.93\n▇▃▇▅▁\n\n\nwt\n1\n3.22\n0.98\n1.51\n2.58\n3.33\n3.61\n5.42\n▃▃▇▁▂\n\n\nqsec\n1\n17.85\n1.79\n14.50\n16.89\n17.71\n18.90\n22.90\n▃▇▇▂▁\n\n\nvs\n1\n0.44\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\nam\n1\n0.41\n0.50\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▆\n\n\ngear\n1\n3.69\n0.74\n3.00\n3.00\n4.00\n4.00\n5.00\n▇▁▆▁▂\n\n\ncarb\n1\n2.81\n1.62\n1.00\n2.00\n2.00\n4.00\n8.00\n▇▂▅▁▁"
   },
   {
-    "objectID": "danl-210-python-basic.html#variables-and-data-types",
-    "href": "danl-210-python-basic.html#variables-and-data-types",
-    "title": "Python Basics",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "objectID": "project.html#explanation",
+    "href": "project.html#explanation",
+    "title": "DANL Project",
+    "section": "2.1 Explanation",
+    "text": "2.1 Explanation\nThis graph gives a visual representation of the quarter mile times of various motor cars in descending order."
   },
   {
-    "objectID": "danl-210-python-basic.html#control-structures",
-    "href": "danl-210-python-basic.html#control-structures",
-    "title": "Python Basics",
-    "section": "",
-    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+    "objectID": "project.html#explanation-1",
+    "href": "project.html#explanation-1",
+    "title": "DANL Project",
+    "section": "3.1 Explanation",
+    "text": "3.1 Explanation\nThis graph allows you to visually see the difference in quarter mile time and how it varies by the number of cylinders in the vehicle. As you can see the vehicles with fewer cylinders can generally be seen with a slower quarter mile time."
   },
   {
-    "objectID": "danl-210-python-basic.html#functions",
-    "href": "danl-210-python-basic.html#functions",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+    "objectID": "project.html#explanation-2",
+    "href": "project.html#explanation-2",
+    "title": "DANL Project",
+    "section": "4.1 Explanation",
+    "text": "4.1 Explanation\nThis visualization is similar to the last one except that this graph also shows the weight distribution among the vehicles, generally we can see that cars with more cylinders will be heavier than their counterparts."
   },
   {
-    "objectID": "danl-210-python-basic.html#lists-and-dictionaries",
-    "href": "danl-210-python-basic.html#lists-and-dictionaries",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "objectID": "project.html#explanation-3",
+    "href": "project.html#explanation-3",
+    "title": "DANL Project",
+    "section": "5.1 Explanation",
+    "text": "5.1 Explanation\nHere we can decipher the quarter mile time in terms of the vehicles horse power and engine type, as we can see, as horse power grows, the quarter mile time goes down. At the same time most vehicles contain a V-Shaped engine that how the faster quarter mile times."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ryan Horn",
-    "section": "",
-    "text": "Hello, my name is Ryan Horn, I was born and raised in Geneseo NY, and have been in the military for 4 1/2 years. I love data analytics and hope to make a career out of it!"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ryan Horn",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Data Analytics Student| Aug 2023 - May 2026"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ryan Horn",
-    "section": "Experience",
-    "text": "Experience\nUS Army Infantryman July 2020 - July 2026"
-  },
-  {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "Ryan Horn’s Blog",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "objectID": "project.html#explanation-4",
+    "href": "project.html#explanation-4",
+    "title": "DANL Project",
+    "section": "6.1 Explanation",
+    "text": "6.1 Explanation\nFinally, this visualization shows how 3 variables (weight, cylinders, and horsepower) differ in each fastest car (from left to right)."
   }
 ]
