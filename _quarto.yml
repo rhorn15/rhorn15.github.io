@@ -13,8 +13,12 @@ website:
         href: danl_proj_nba.ipynb
       - text: Blog
         href: blog-listing.qmd
-      - text: Python Data Analysis 
-        href: pyda.qmd
+      - text: Python Data Analysis
+        menu:
+          - text: Pandas Basics
+            href: pandas_basics.ipynb
+          - text: Seaborn Basics
+            href: seaborn_basics.ipynb
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
 
