@@ -1,7 +1,7 @@
 ---
 title: "Ryan Horn"
 about:
-  template: trestles  # jolla  trestles  solana  marquee  broadside
+  template: jolla # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
   image-width: 15em
   image-shape: round # rectangle  round  rounded
