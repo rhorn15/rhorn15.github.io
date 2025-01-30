@@ -8,9 +8,9 @@ website:
     pinned: true
     left:
       - text: DANL 200
-        href: project.qmd
+        href: DANL200_proj.qmd
       - text: DANL 210
-        href: danl_proj_nba.ipynb
+        href: DANL210_proj.ipynb
       - text: Blog
         href: blog-listing.qmd
       - text: Python Data Analysis
