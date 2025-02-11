@@ -154,6 +154,13 @@
     "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
   },
   {
+    "objectID": "posts/Python Basics/index.html",
+    "href": "posts/Python Basics/index.html",
+    "title": "Python Basics",
+    "section": "",
+    "text": "Lecture 4\nIn lecture 4 we worked with various aspects of python including, values, variables, types, assignments, basic code, and comment styles.\n\n\nLecture 5\nIn lecture 5 we expanded on what we learned in lecture 4 and introduced many more aspects of python."
+  },
+  {
     "objectID": "posts/Restaurant Inspection/index.html",
     "href": "posts/Restaurant Inspection/index.html",
     "title": "Restaurant Inspections",
