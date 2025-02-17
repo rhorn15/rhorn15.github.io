@@ -158,7 +158,7 @@
     "href": "posts/Python Basics/index.html",
     "title": "Python Basics",
     "section": "",
-    "text": "Lecture 4\nIn lecture 4 we worked with various aspects of python including, values, variables, types, assignments, basic code, and comment styles.\n\n\nLecture 5\nIn lecture 5 we expanded on what we learned in lecture 4 and introduced many more aspects of python."
+    "text": "Lecture 4\nIn lecture 4 we worked with various aspects of python including, values, variables, types, assignments, basic code, and comment styles.\n\n\nLecture 5\nIn lecture 5 we expanded on what we learned in lecture 4 and introduced many more aspects of python. Some of these included Booleans, conditions, and if statements. On top of that we started using slicing methods for strings and lists and many more.\n\n\nClasswork 4\nIn classwork 4 we started with using pythons syntax to solve an algabreaic equation. We then practiced with lists, slicing, while and for loops, and importing libraries."
   },
   {
     "objectID": "posts/Restaurant Inspection/index.html",
