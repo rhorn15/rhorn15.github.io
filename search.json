@@ -4,7 +4,7 @@
     "href": "blog-listing.html",
     "title": "Ryan Horn’s Blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpotify Analytics\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nRestaurant Inspections\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nNFL 2022 Data\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nRyan Horn\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pandas_basics.html#creating-a-series",
@@ -147,11 +147,11 @@
     "text": "Thank you for checking this out! This blog is to display some analytics of various data sets, hope you enjoy!"
   },
   {
-    "objectID": "posts/Spotify/index.html",
-    "href": "posts/Spotify/index.html",
-    "title": "Spotify Analytics",
+    "objectID": "posts/Restaurant Inspection/index.html",
+    "href": "posts/Restaurant Inspection/index.html",
+    "title": "Restaurant Inspections",
     "section": "",
-    "text": "Here are some interesting analytics related to spotify!\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\nBoxplot of Artist Rankings\n\n\n\n\nHere we can see that “pos” (position of track within a playlist), doesn’t vary a significant amount between these top ten artists.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of track positions within playlists.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 artists based on the total number of tracks in playlists."
+    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
   },
   {
     "objectID": "posts/Python Basics/index.html",
@@ -159,13 +159,6 @@
     "title": "Python Basics",
     "section": "",
     "text": "Lecture 4\nIn lecture 4 we worked with various aspects of python including, values, variables, types, assignments, basic code, and comment styles.\n\n\nLecture 5\nIn lecture 5 we expanded on what we learned in lecture 4 and introduced many more aspects of python. Some of these included Booleans, conditions, and if statements. On top of that we started using slicing methods for strings and lists and many more.\n\n\nClasswork 4\nIn classwork 4 we started with using pythons syntax to solve an algabreaic equation. We then practiced with lists, slicing, while and for loops, and importing libraries."
-  },
-  {
-    "objectID": "posts/Restaurant Inspection/index.html",
-    "href": "posts/Restaurant Inspection/index.html",
-    "title": "Restaurant Inspections",
-    "section": "",
-    "text": "Listed here are some analytics related to restaurants in NYC.\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\n\nAs we can see from the graph above, data from NYC restaurants, critical score varies more as the you move from category A, B, and C.\n\n\n\n\n\n\n\n\n\nThis bar plot shows the top 10 cuisine types based on the number of restaurants.\n\n\n\n\n\n\n\n\n\nThis histogram visualizes the distribution of inspection scores for restaurants."
   },
   {
     "objectID": "posts/Beer Markets/index.html",
