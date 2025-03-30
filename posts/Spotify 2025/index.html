@@ -421,8 +421,8 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </div>
 </div>
 </section>
-<section id="this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." class="level1">
-<h1>This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.</h1>
+<section id="this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." class="level2">
+<h2 class="anchored" data-anchor-id="this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame.">This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.</h2>
 <div id="cell-4" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>oasis_df <span class="op">=</span> (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    spotify</span>
@@ -527,8 +527,8 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </div>
 </div>
 </section>
-<section id="this-code-displays-the-total-number-of-tracks-by-oasis" class="level1">
-<h1>This code displays the total number of tracks by Oasis</h1>
+<section id="this-code-displays-the-total-number-of-tracks-by-oasis" class="level2">
+<h2 class="anchored" data-anchor-id="this-code-displays-the-total-number-of-tracks-by-oasis">This code displays the total number of tracks by Oasis</h2>
 <div id="cell-6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    oasis_df</span>
@@ -539,8 +539,8 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </div>
 </div>
 </section>
-<section id="this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" class="level1">
-<h1>This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis</h1>
+<section id="this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" class="level2">
+<h2 class="anchored" data-anchor-id="this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis">This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis</h2>
 <div id="cell-8" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>oasis_df[<span class="st">'duration_sec'</span>] <span class="op">=</span> oasis_df[<span class="st">'duration_ms'</span>] <span class="op">/</span> <span class="dv">1000</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>oasis_df[<span class="st">'duration_min'</span>] <span class="op">=</span> oasis_df[<span class="st">'duration_sec'</span>] <span class="op">/</span> <span class="dv">60</span></span>

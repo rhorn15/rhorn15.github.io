@@ -175,6 +175,27 @@
     "text": "import pandas as pd\nfrom itables import init_notebook_mode,show\ninit_notebook_mode(all_interactive=False)\n\nspotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')\n\nshow(spotify)\n\n\n\n\n\n\n\n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nThis is the init_notebook_mode cell from ITables v2.2.4\n(you should not see this message - is your notebook trusted?)\n\n\n\n\n\n\n    \n      \n      pid\n      playlist_name\n      pos\n      artist_name\n      track_name\n      duration_ms\n      album_name\n    \n  \n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nLoading ITables v2.2.4 from the init_notebook_mode cell...\n(need help?)"
   },
   {
+    "objectID": "posts/Spotify 2025/index.html#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame.",
+    "href": "posts/Spotify 2025/index.html#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame.",
+    "title": "Spotify Analytics",
+    "section": "This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.",
+    "text": "This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.\n\noasis_df = (\n    spotify\n    [spotify['artist_name'] == 'Oasis']\n    .drop_duplicates(subset='track_name')\n)\nshow(oasis_df)\n\n\n\n    \n      \n      pid\n      playlist_name\n      pos\n      artist_name\n      track_name\n      duration_ms\n      album_name\n    \n  \n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nLoading ITables v2.2.4 from the init_notebook_mode cell...\n(need help?)"
+  },
+  {
+    "objectID": "posts/Spotify 2025/index.html#this-code-displays-the-total-number-of-tracks-by-oasis",
+    "href": "posts/Spotify 2025/index.html#this-code-displays-the-total-number-of-tracks-by-oasis",
+    "title": "Spotify Analytics",
+    "section": "This code displays the total number of tracks by Oasis",
+    "text": "This code displays the total number of tracks by Oasis\n\n(\n    oasis_df\n    .value_counts(['track_name']).shape[0]\n)\n\n12"
+  },
+  {
+    "objectID": "posts/Spotify 2025/index.html#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis",
+    "href": "posts/Spotify 2025/index.html#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis",
+    "title": "Spotify Analytics",
+    "section": "This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis",
+    "text": "This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis\n\noasis_df['duration_sec'] = oasis_df['duration_ms'] / 1000\noasis_df['duration_min'] = oasis_df['duration_sec'] / 60\n\nsorted_oasis = (\n    oasis_df\n    .sort_values(by='duration_min', ascending=False)\n    [['track_name', 'duration_min']]\n    .head(5)\n)\n\nshow(sorted_oasis)\n\n\n\n    \n      \n      track_name\n      duration_min\n    \n  \n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nLoading ITables v2.2.4 from the init_notebook_mode cell...\n(need help?)"
+  },
+  {
     "objectID": "posts/Beer Markets/index.html",
     "href": "posts/Beer Markets/index.html",
     "title": "Beer Markets",
