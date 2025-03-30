@@ -204,7 +204,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#below-is-analytics-of-multiple-different-parameters-related-to-the-following-spotify-dataframe." id="toc-below-is-analytics-of-multiple-different-parameters-related-to-the-following-spotify-dataframe." class="nav-link active" data-scroll-target="#below-is-analytics-of-multiple-different-parameters-related-to-the-following-spotify-dataframe.">Below is analytics of multiple different parameters related to the following Spotify dataframe.</a></li>
-  <li><a href="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-in-this-data-frame." id="toc-this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-in-this-data-frame." class="nav-link" data-scroll-target="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-in-this-data-frame.">This code displays all the tracks of one of my favorite artists in this data frame.</a></li>
+  <li><a href="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." id="toc-this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." class="nav-link" data-scroll-target="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame.">This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.</a></li>
+  <li><a href="#this-code-displays-the-total-number-of-tracks-by-oasis" id="toc-this-code-displays-the-total-number-of-tracks-by-oasis" class="nav-link" data-scroll-target="#this-code-displays-the-total-number-of-tracks-by-oasis">This code displays the total number of tracks by Oasis</a></li>
+  <li><a href="#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" id="toc-this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" class="nav-link" data-scroll-target="#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis">This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis</a></li>
   </ul>
 </nav>
     </div>
@@ -419,18 +421,17 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </div>
 </div>
 </section>
-<section id="this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-in-this-data-frame." class="level1">
-<h1>This code displays all the tracks of one of my favorite artists in this data frame.</h1>
-<div id="cell-4" class="cell" data-execution_count="15">
+<section id="this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." class="level1">
+<h1>This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.</h1>
+<div id="cell-4" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>oasis_df <span class="op">=</span> (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    spotify</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    [spotify[<span class="st">'artist_name'</span>] <span class="op">==</span> <span class="st">'Oasis'</span>]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    .drop_duplicates(subset<span class="op">=</span><span class="st">'track_name'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    .set_index([<span class="st">'track_name'</span>])</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>show(oasis_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>show(oasis_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<table id="itables_d27e4261_15aa_4b4e_9176_6e2fda354c3d" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_89749ddb_68f1_4d30_b883_0a2f9a3db3ff" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -438,17 +439,9 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
       <th>playlist_name</th>
       <th>pos</th>
       <th>artist_name</th>
+      <th>track_name</th>
       <th>duration_ms</th>
       <th>album_name</th>
-    </tr>
-    <tr>
-      <th>track_name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead><tbody><tr>
 <td style="vertical-align:middle; text-align:left">
@@ -516,15 +509,133 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 <script type="module">
     const { DataTable, jQuery: $ } = await import(window._datatables_src_for_itables_2_2_4);
 
-    document.querySelectorAll("#itables_d27e4261_15aa_4b4e_9176_6e2fda354c3d:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_89749ddb_68f1_4d30_b883_0a2f9a3db3ff:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
         // Define the table data
-        const data = [["Wonderwall - Remastered", 4, "90s", 1, "Oasis", 258773, "(What's The Story) Morning Glory? [Remastered]"], ["Champagne Supernova - Remastered", 14, "90's", 74, "Oasis", 451320, "(What's The Story) Morning Glory? [Remastered]"], ["Live Forever", 158, "Solitude", 46, "Oasis", 276866, "Definitely Maybe"], ["Don't Look Back in Anger - Remastered", 334, "90s alternative", 60, "Oasis", 289560, "(What's The Story) Morning Glory? [Remastered]"], ["Don't Go Away", 406, "90's", 164, "Oasis", 288600, "Be Here Now"], ["Stand by Me", 406, "90's", 187, "Oasis", 356600, "Be Here Now"], ["Stop Crying Your Heart Out", 509, "Chill Songs", 71, "Oasis", 303133, "Heathen Chemistry"], ["Supersonic - Remastered", 565, "Country", 68, "Oasis", 283786, "Definitely Maybe (Remastered)"], ["She's Electric - Remastered", 1653, "LONDON!!!", 11, "Oasis", 220920, "(What's The Story) Morning Glory? [Remastered]"], ["A Bell Will Ring", 999391, "BG", 58, "Oasis", 187640, "Don't Believe The Truth"], ["D'You Know What I Mean?", 999391, "BG", 59, "Oasis", 462226, "Be Here Now"], ["The Girl in the Dirty Shirt", 999579, "Inspiration", 11, "Oasis", 347400, "Be Here Now"]];
+        const data = [[282, 4, "90s", 1, "Oasis", "Wonderwall - Remastered", 258773, "(What's The Story) Morning Glory? [Remastered]"], [816, 14, "90's", 74, "Oasis", "Champagne Supernova - Remastered", 451320, "(What's The Story) Morning Glory? [Remastered]"], [10521, 158, "Solitude", 46, "Oasis", "Live Forever", 276866, "Definitely Maybe"], [20798, 334, "90s alternative", 60, "Oasis", "Don't Look Back in Anger - Remastered", 289560, "(What's The Story) Morning Glory? [Remastered]"], [26312, 406, "90's", 164, "Oasis", "Don't Go Away", 288600, "Be Here Now"], [26335, 406, "90's", 187, "Oasis", "Stand by Me", 356600, "Be Here Now"], [33960, 509, "Chill Songs", 71, "Oasis", "Stop Crying Your Heart Out", 303133, "Heathen Chemistry"], [37649, 565, "Country", 68, "Oasis", "Supersonic - Remastered", 283786, "Definitely Maybe (Remastered)"], [111409, 1653, "LONDON!!!", 11, "Oasis", "She's Electric - Remastered", 220920, "(What's The Story) Morning Glory? [Remastered]"], [159376, 999391, "BG", 58, "Oasis", "A Bell Will Ring", 187640, "Don't Believe The Truth"], [159377, 999391, "BG", 59, "Oasis", "D'You Know What I Mean?", 462226, "Be Here Now"], [170957, 999579, "Inspiration", 11, "Oasis", "The Girl in the Dirty Shirt", 347400, "Be Here Now"]];
 
         // Define the dt_args
         let dt_args = {"layout": {"topStart": "pageLength", "topEnd": "search", "bottomStart": "info", "bottomEnd": "paging"}, "order": [], "warn_on_selected_rows_not_rendered": true};
+        dt_args["data"] = data;
+
+        
+        new DataTable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+</section>
+<section id="this-code-displays-the-total-number-of-tracks-by-oasis" class="level1">
+<h1>This code displays the total number of tracks by Oasis</h1>
+<div id="cell-6" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    oasis_df</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    .value_counts([<span class="st">'track_name'</span>]).shape[<span class="dv">0</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>12</code></pre>
+</div>
+</div>
+</section>
+<section id="this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" class="level1">
+<h1>This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis</h1>
+<div id="cell-8" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>oasis_df[<span class="st">'duration_sec'</span>] <span class="op">=</span> oasis_df[<span class="st">'duration_ms'</span>] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>oasis_df[<span class="st">'duration_min'</span>] <span class="op">=</span> oasis_df[<span class="st">'duration_sec'</span>] <span class="op">/</span> <span class="dv">60</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sorted_oasis <span class="op">=</span> (</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    oasis_df</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .sort_values(by<span class="op">=</span><span class="st">'duration_min'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    [[<span class="st">'track_name'</span>, <span class="st">'duration_min'</span>]]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">5</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>show(sorted_oasis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table id="itables_cfb5f3fb_9a95_4513_beb9_54a130dedf36" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_name</th>
+      <th>duration_min</th>
+    </tr>
+  </thead><tbody><tr>
+<td style="vertical-align:middle; text-align:left">
+<a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:#d9d7fc">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:#1a1366;stroke:#1a1366;">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
+(need <a href="https://mwouts.github.io/itables/troubleshooting.html">help</a>?)</td>
+</tr></tbody>
+</table>
+<script type="module">
+    const { DataTable, jQuery: $ } = await import(window._datatables_src_for_itables_2_2_4);
+
+    document.querySelectorAll("#itables_cfb5f3fb_9a95_4513_beb9_54a130dedf36:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        // Define the table data
+        const data = [[159377, "D'You Know What I Mean?", 7.703767], [816, "Champagne Supernova - Remastered", 7.522], [26335, "Stand by Me", 5.943333], [170957, "The Girl in the Dirty Shirt", 5.79], [33960, "Stop Crying Your Heart Out", 5.052217]];
+
+        // Define the dt_args
+        let dt_args = {"layout": {"topStart": null, "topEnd": null, "bottomStart": null, "bottomEnd": null}, "order": [], "warn_on_selected_rows_not_rendered": true};
         dt_args["data"] = data;
 
         
