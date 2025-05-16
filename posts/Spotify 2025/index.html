@@ -207,6 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." id="toc-this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame." class="nav-link" data-scroll-target="#this-code-displays-all-the-tracks-of-one-of-my-favorite-artists-oasis-in-this-data-frame.">This code displays all the tracks of one of my favorite artists (Oasis) in this data frame.</a></li>
   <li><a href="#this-code-displays-the-total-number-of-tracks-by-oasis" id="toc-this-code-displays-the-total-number-of-tracks-by-oasis" class="nav-link" data-scroll-target="#this-code-displays-the-total-number-of-tracks-by-oasis">This code displays the total number of tracks by Oasis</a></li>
   <li><a href="#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" id="toc-this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis" class="nav-link" data-scroll-target="#this-code-changes-the-duration-from-ms-to-minutes-to-make-it-more-understandable-then-prints-the-top-5-longest-songs-by-oasis">This code changes the duration from ms to minutes to make it more understandable then prints the top 5 longest songs by Oasis</a></li>
+  <li><a href="#top-10-artists-by-track-count-pos-distributions" id="toc-top-10-artists-by-track-count-pos-distributions" class="nav-link" data-scroll-target="#top-10-artists-by-track-count-pos-distributions">Top 10 Artists by Track Count &amp; POS Distributions</a></li>
   </ul>
 </nav>
     </div>
@@ -644,6 +645,54 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </script>
 </div>
 </div>
+</section>
+<section id="top-10-artists-by-track-count-pos-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="top-10-artists-by-track-count-pos-distributions">Top 10 Artists by Track Count &amp; POS Distributions</h2>
+<div id="cell-10" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the full Spotify dataset</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>spotify <span class="op">=</span> pd.read_csv(<span class="st">'https://bcdanl.github.io/data/spotify_all.csv'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Find the top 10 most‐prolific artists</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>top10 <span class="op">=</span> spotify[<span class="st">'artist_name'</span>].value_counts().nlargest(<span class="dv">10</span>).index.tolist()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Subset and plot the POS distributions with violins</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df_top10 <span class="op">=</span> spotify[spotify[<span class="st">'artist_name'</span>].isin(top10)]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>sns.violinplot(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'artist_name'</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'pos'</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df_top10,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    cut<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    inner<span class="op">=</span><span class="st">'quartile'</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">'tab10'</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'POS Distribution for Top 10 Artists'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Artist'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Track Position (pos)'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/gp/qrzfglvs0plg_zk9wtgwkzyr0000gn/T/ipykernel_75043/340212433.py:14: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpretation:</strong><br>
+Among the ten busiest artists, some—like the #1 artist—show very tight POS violins centered in the top‐20 (“early” positions), indicating consistent front‐loaded playlist placement. Others (e.g.&nbsp;the #4 and #7 artists) have much wider violins stretching into the bottom half, meaning their tracks appear across both early and late positions. Most artists fall between these extremes, with moderate variation in where their songs land.</p>
 
 
 </section>

@@ -204,7 +204,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link active" data-scroll-target="#load-the-data">load the data</a></li>
-  <li><a href="#explore-data-through-various-pandas-operations" id="toc-explore-data-through-various-pandas-operations" class="nav-link" data-scroll-target="#explore-data-through-various-pandas-operations">Explore data through various pandas operations</a></li>
+  <li><a href="#explore-data-through-various-pandas-operations" id="toc-explore-data-through-various-pandas-operations" class="nav-link" data-scroll-target="#explore-data-through-various-pandas-operations">Explore data through various pandas operations</a>
+  <ul class="collapse">
+  <li><a href="#top-5-genres-votes-vs.-ratings-by-title-type" id="toc-top-5-genres-votes-vs.-ratings-by-title-type" class="nav-link" data-scroll-target="#top-5-genres-votes-vs.-ratings-by-title-type">Top 5 Genres: Votes vs.&nbsp;Ratings by Title Type</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -217,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="load-the-data" class="level1">
 <h1>load the data</h1>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> init_notebook_mode, show</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>init_notebook_mode(all_interactive<span class="op">=</span><span class="va">False</span>)</span>
@@ -226,7 +229,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>holiday_movies <span class="op">=</span> pd.read_csv(<span class="st">"https://bcdanl.github.io/data/holiday_movies.csv"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the holiday movie genres dataset</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>holiday_movie_genres <span class="op">=</span> pd.read_csv(<span class="st">"https://bcdanl.github.io/data/holiday_movie_genres.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>holiday_movie_genres <span class="op">=</span> pd.read_csv(<span class="st">"https://bcdanl.github.io/data/holiday_movie_genres.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>holiday_movie_genres.columns</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>holiday_movies.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script>
     let is_dark_theme = function () {
@@ -324,17 +330,22 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.2.4<br>
 </noscript>
 </div>
 </div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>Index(['tconst', 'title_type', 'primary_title', 'simple_title', 'year',
+       'runtime_minutes', 'average_rating', 'num_votes'],
+      dtype='object')</code></pre>
+</div>
 </div>
 </section>
 <section id="explore-data-through-various-pandas-operations" class="level1">
 <h1>Explore data through various pandas operations</h1>
 <div id="cell-4" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>total_movies <span class="op">=</span> holiday_movies.shape[<span class="dv">0</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total number of movies:'</span>, total_movies)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>total_genres <span class="op">=</span> holiday_movie_genres[<span class="st">'genres'</span>].value_counts()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of movies per genre:'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_genres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>total_movies <span class="op">=</span> holiday_movies.shape[<span class="dv">0</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total number of movies:'</span>, total_movies)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>total_genres <span class="op">=</span> holiday_movie_genres[<span class="st">'genres'</span>].value_counts()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of movies per genre:'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_genres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total number of movies: 2265
 Number of movies per genre:
@@ -369,9 +380,9 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-5" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sorted_movies <span class="op">=</span> holiday_movies.sort_values(by<span class="op">=</span><span class="st">'average_rating'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Top 5 movies by average rating'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_movies[[<span class="st">'primary_title'</span>,<span class="st">'average_rating'</span>]].head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sorted_movies <span class="op">=</span> holiday_movies.sort_values(by<span class="op">=</span><span class="st">'average_rating'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Top 5 movies by average rating'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_movies[[<span class="st">'primary_title'</span>,<span class="st">'average_rating'</span>]].head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Top 5 movies by average rating
                        primary_title  average_rating
@@ -383,9 +394,9 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-6" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>highly_rated_movies <span class="op">=</span> holiday_movies[holiday_movies[<span class="st">'average_rating'</span>] <span class="op">&gt;=</span> <span class="dv">8</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies with average rating &gt;= 8:"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(highly_rated_movies[[<span class="st">'primary_title'</span>, <span class="st">'average_rating'</span>]].head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>highly_rated_movies <span class="op">=</span> holiday_movies[holiday_movies[<span class="st">'average_rating'</span>] <span class="op">&gt;=</span> <span class="dv">8</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies with average rating &gt;= 8:"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(highly_rated_movies[[<span class="st">'primary_title'</span>, <span class="st">'average_rating'</span>]].head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Movies with average rating &gt;= 8:
                         primary_title  average_rating
@@ -397,9 +408,9 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-7" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>movies_2000_onwards <span class="op">=</span> holiday_movies[holiday_movies[<span class="st">'year'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies released in or after 2000:"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>show(movies_2000_onwards[[<span class="st">'primary_title'</span>, <span class="st">'year'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>movies_2000_onwards <span class="op">=</span> holiday_movies[holiday_movies[<span class="st">'year'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies released in or after 2000:"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>show(movies_2000_onwards[[<span class="st">'primary_title'</span>, <span class="st">'year'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Movies released in or after 2000:</code></pre>
 </div>
@@ -495,9 +506,9 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>movies_with_genres <span class="op">=</span> pd.merge(holiday_movies, holiday_movie_genres, on<span class="op">=</span><span class="st">'tconst'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Movies with their genres:'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>show(movies_with_genres[[<span class="st">'primary_title'</span>, <span class="st">'genres'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>movies_with_genres <span class="op">=</span> pd.merge(holiday_movies, holiday_movie_genres, on<span class="op">=</span><span class="st">'tconst'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Movies with their genres:'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>show(movies_with_genres[[<span class="st">'primary_title'</span>, <span class="st">'genres'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Movies with their genres:</code></pre>
 </div>
@@ -592,8 +603,61 @@ Loading ITables v2.2.4 from the <code>init_notebook_mode</code> cell...
 </script>
 </div>
 </div>
+<section id="top-5-genres-votes-vs.-ratings-by-title-type" class="level2">
+<h2 class="anchored" data-anchor-id="top-5-genres-votes-vs.-ratings-by-title-type">Top 5 Genres: Votes vs.&nbsp;Ratings by Title Type</h2>
+<div id="cell-10" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the datasets</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_csv(<span class="st">"https://bcdanl.github.io/data/holiday_movies.csv"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>genres <span class="op">=</span> pd.read_csv(<span class="st">"https://bcdanl.github.io/data/holiday_movie_genres.csv"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Identify the five genres with the highest film counts</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>top5 <span class="op">=</span> genres[<span class="st">'genres'</span>].value_counts().nlargest(<span class="dv">5</span>).index.tolist()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Merge on tconst, filter to those top genres, and add log(num_votes)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    movies</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    .merge(genres, on<span class="op">=</span><span class="st">'tconst'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    .query(<span class="st">"genres in @top5"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    .assign(log_num_votes <span class="op">=</span> <span class="kw">lambda</span> d: np.log(d[<span class="st">'num_votes'</span>]))</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Plot log(num_votes) vs. average_rating, faceted by genre &amp; colored by title_type</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>sns.lmplot(</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'log_num_votes'</span>, y<span class="op">=</span><span class="st">'average_rating'</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    col<span class="op">=</span><span class="st">'genres'</span>, hue<span class="op">=</span><span class="st">'title_type'</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    sharex<span class="op">=</span><span class="va">False</span>, sharey<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.6</span>},</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">'linewidth'</span>: <span class="dv">2</span>},</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ci<span class="op">=</span><span class="va">None</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(top<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">'Votes vs. Rating with Regression Lines by Genre &amp; Title Type'</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/anaconda3/lib/python3.12/site-packages/seaborn/regression.py:598: UserWarning: sharex is deprecated from the `lmplot` function signature. Please update your code to pass it using `facet_kws`.
+  warnings.warn(msg, UserWarning)
+/opt/anaconda3/lib/python3.12/site-packages/seaborn/regression.py:598: UserWarning: sharey is deprecated from the `lmplot` function signature. Please update your code to pass it using `facet_kws`.
+  warnings.warn(msg, UserWarning)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpretation:</strong><br>
+Documentaries exhibit the strongest positive relationship between vote count and rating—higher-voted docs almost always earn better reviews. Family and Drama films also trend upward, though with more spread: popular titles tend to have higher ratings but there are outliers. Comedy shows nearly no slope, indicating vote totals tell us little about comedic quality, while Romance sits in between. Across title types, Movies generally cluster at higher vote levels and ratings, whereas TV Shorts are more dispersed and tend to receive lower average ratings.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
