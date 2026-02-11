@@ -46,7 +46,7 @@ show(head(top_flavors))
 ```{r Filter:coupon users}
 coupon_users <- ice_cream %>% 
   filter(usecoup == TRUE)
-data.frame(coupon_users)
+show(coupon_users)
 ```
 
 ## Group by: Coupon users
@@ -58,7 +58,7 @@ compare <- ice_cream %>%
     avg_price = mean(priceper1, na.rm = TRUE),
     count = n()
   )
-data.frame(compare)
+show(compare)
 ```
 
 ## Regression Model: What Drives Price Paid?
