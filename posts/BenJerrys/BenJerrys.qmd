@@ -1,0 +1,90 @@
+---
+title: "Ben & Jerry’s: Who Buys and What Drives Spending?"
+author: "Ryan Horn"
+date: "2026-02-11"
+categories: [Beverages]
+format: html
+---
+
+![Ben & Jerry's Ice Cream](IceCreamPic.jpeg)
+
+## Introduction
+
+This blog post is going to explore purchasing behavior for Ben & Jerry's ice cream using the "ice_cream" dataset.
+
+We will examine pricing, household characteristics, coupon usage, and regional patterns to understand what factors influence dollar spending on ice cream.
+
+```{r load data}
+library(tidyverse)
+ice_cream <- read_csv("https://bcdanl.github.io/data/ben-and-jerry-cleaned.csv")
+```
+
+## Descriptive Statistics
+
+```{r Descriptive Statistics}
+summary_stats <- ice_cream %>% 
+  summarise(
+    mean_price = mean(priceper1, na.rm = TRUE),
+    median_price = median(priceper1, na.rm = TRUE),
+    sd_price = sd(priceper1, na.rm = TRUE),
+    avg_household_size = mean(household_size, na.rm = TRUE)
+  )
+
+show(summary_stats)
+```
+
+## Most Popular Flavors
+
+```{r flavor-count}
+top_flavors <- ice_cream %>% 
+  count(flavor_descr, sort = TRUE)
+show(head(top_flavors))
+```
+
+## Filtering
+
+```{r Filter:coupon users}
+coupon_users <- ice_cream %>% 
+  filter(usecoup == TRUE)
+data.frame(coupon_users)
+```
+
+## Group by: Coupon users
+
+```{r compare-coupon}
+compare <- ice_cream %>% 
+  group_by(usecoup) %>% 
+  summarise(
+    avg_price = mean(priceper1, na.rm = TRUE),
+    count = n()
+  )
+data.frame(compare)
+```
+
+## Regression Model: What Drives Price Paid?
+
+```{r regression-model}
+library(modelsummary)
+model <- lm(priceper1 ~ usecoup + household_income + household_size + region,
+            data = ice_cream)
+
+modelsummary(model)
+```
+
+## Regression Interpretation
+
+The regression results suggest that regional differences are the strongest predictors of price variation, with the East region showing the highest unit prices. Coupon usage is associated with slightly higher unit prices, potentially reflecting usage on premium products. Household size has a small negative effect on unit price, possibly due to bulk purchasing behavior. Household income does not appear to meaningfully influence price paid. Overall, the model explains a modest portion of price variation, indicating that additional factors beyond household characteristics likely influence pricing.
+
+## Price Distribution by Region
+
+```{r price-by-region, fig.width=7, fig.height=5}
+ggplot(ice_cream, aes(x = region, y = priceper1)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Unit Price Distribution by Region",
+    x = "Region",
+    y = "Price per Unit ($)"
+  ) +
+  theme_minimal()
+```
+The boxplot confirms regional variation in pricing, with the East showing the highest median unit price. Coupon usage does not appear to reduce the unit price substantially, supporting the regression findings.

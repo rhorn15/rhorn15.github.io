@@ -7,7 +7,8 @@ categories: [Beverages]
 
 Here is some analytics in relation to Beer Markets!
 
-![](Beer image .jpeg)
+![](IceCreamPic.jpeg)
+
 ```{r, echo=FALSE}
 beer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')
 library(ggplot2)
