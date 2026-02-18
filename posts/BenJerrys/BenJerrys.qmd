@@ -17,6 +17,11 @@ We will examine pricing, household characteristics, coupon usage, and regional p
 ```{r load data}
 library(tidyverse)
 ice_cream <- read_csv("https://bcdanl.github.io/data/ben-and-jerry-cleaned.csv")
+
+ice_cream2 <- ice_cream %>% 
+  mutate(
+    effective_price = priceper1 - couponper1
+  )
 ```
 
 ## Descriptive Statistics
@@ -87,4 +92,28 @@ ggplot(ice_cream, aes(x = region, y = priceper1)) +
   ) +
   theme_minimal()
 ```
+
 The boxplot confirms regional variation in pricing, with the East showing the highest median unit price. Coupon usage does not appear to reduce the unit price substantially, supporting the regression findings.
+
+```{r facet plot}
+ggplot(ice_cream2, aes(x =usecoup, y = effective_price))+
+  geom_boxplot(fill = "steelblue") +
+  facet_wrap(~ region) +
+  labs(
+    title = "Effective Price by Coupon Usage Across Regions",
+    x = "Used Coupon",
+    y = "Effective Price ($)"
+  ) +
+  theme_minimal()
+```
+
+```{r distribution plot}
+ggplot(ice_cream2, aes(x = effective_price)) +
+  geom_histogram(bins = 30, fill = "darkgreen", alpha = 0.7) +
+  labs(
+    title = "Distribution of Effective Unit Prices",
+    x = "Effective Price ($)",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
