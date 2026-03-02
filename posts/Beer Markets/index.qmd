@@ -1,49 +1,74 @@
 ---
 title: "Beer Markets"
 author: "Ryan Horn"
-date: "2023-12-11"
+date: "2026-03-02"
 categories: [Beverages]
 ---
 
 Here is some analytics in relation to Beer Markets!
 
-![](IceCreamPic.jpeg)
+![](Beer Image .jpeg)
 
 ```{r, echo=FALSE}
-beer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')
-library(ggplot2)
+library(tidyverse)
 
+beer_markets <- read_csv(
+  "https://bcdanl.github.io/data/beer_markets_all_cleaned.csv"
+)
 
-ggplot(beer_mkts, aes(x = quantity, y = dollar_spent)) +
-  geom_point(alpha = 0.5) +
-  labs(title = "Scatter Plot of Quantity vs Dollar Spent",
-       x = "Quantity",
-       y = "Dollar Spent")
-
+beer_markets %>%
+  summarise(
+    avg_price = mean(price_floz, na.rm = TRUE),
+    avg_spent = mean(dollar_spent, na.rm = TRUE),
+    avg_volume = mean(beer_floz, na.rm = TRUE)
+  )
 ```
-This scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.
+
+These values summarize average price per ounce, spending, and purchase volume across all households.
 
 ```{r, echo=FALSE}
+beer_markets %>%
+  count(brand, sort = TRUE)
+```
 
-ggplot(beer_mkts, aes(x = brand, y = dollar_spent, fill = brand)) +
-  geom_bar(stat = "summary", fun = sum) +
-  labs(title = "Total Dollar Spent by Brand",
-       x = "Brand",
-       y = "Total Dollar Spent") +
+This shows which brands are purchased most frequently.
+
+```{r, echo=FALSE}
+beer_markets %>%
+  group_by(promo) %>%
+  summarise(avg_price = mean(price_floz, na.rm = TRUE)) %>%
+  mutate(pct_diff = (avg_price - lag(avg_price)) / lag(avg_price) * 100)
+```
+
+Promotional purchases are associated with a 7.2% reduction in price per ounce, indicating that promotions provide measurable cost savings to consumers.
+
+```{r}
+beer_markets %>%
+  group_by(brand) %>%
+  summarise(
+    avg_price = mean(price_floz, na.rm = TRUE),
+    avg_volume = mean(beer_floz, na.rm = TRUE)
+  ) %>%
+  arrange(avg_price)
+```
+
+This compares average pricing and purchase volume across brands.
+
+```{r}
+model_beer <- lm(price_floz ~ beer_floz + promo + income, 
+                 data = beer_markets)
+
+summary(model_beer)
+```
+
+The regression estimates how purchase size, promotions, and income are associated with price per ounce.
+
+```{r}
+ggplot(beer_markets, aes(x = beer_floz, y = price_floz)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm") +
+  scale_x_log10() +
   theme_minimal()
-
-```
-This bar plot shows the total dollar spent on each beer brand.
-
-```{r, echo=FALSE}
-ggplot(beer_mkts, aes(x = promo, y = price_per_floz, fill = promo)) +
-  geom_boxplot() +
-  labs(title = "Box Plot of Price per fl.oz. by Promotion Status",
-       x = "Promotion Status",
-       y = "Price per fl.oz.") +
-  theme_minimal()
-
 ```
 
-This box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted.
-
+After adjusting for extreme bulk purchases using a log scale, the negative relationship between volume and price becomes clearer, suggesting that consumers benefit from lower per-ounce pricing when buying larger quantities.

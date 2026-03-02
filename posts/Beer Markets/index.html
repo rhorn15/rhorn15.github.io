@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ryan Horn">
-<meta name="dcterms.date" content="2023-12-11">
+<meta name="dcterms.date" content="2026-03-02">
 
 <title>Beer Markets – Ryan Horn’s Website</title>
 <style>
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -150,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 11, 2023</p>
+        <p class="date">March 2, 2026</p>
       </div>
     </div>
     
@@ -170,37 +204,130 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Here is some analytics in relation to Beer Markets!</p>
-<p><img src="IceCreamPic.jpeg" class="img-fluid"></p>
+<p><img src="Beer Image .jpeg" class="img-fluid"></p>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+Rows: 73115 Columns: 26
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (15): X_purchase_desc, brand, container, region, state, market, buyertyp...
+dbl  (5): household, quantity, dollar_spent, beer_floz, price_floz
+lgl  (6): promo, childrenUnder6, children6to17, microwave, dishwasher, singl...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  avg_price avg_spent avg_volume
+      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1    0.0560      13.8       266.</code></pre>
+</div>
+</div>
+<p>These values summarize average price per ounce, spending, and purchase volume across all households.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  brand             n
+  &lt;chr&gt;         &lt;int&gt;
+1 BUD_LIGHT     21592
+2 MILLER_LITE   17159
+3 COORS_LIGHT   13074
+4 NATURAL_LIGHT 12616
+5 BUSCH_LIGHT    8674</code></pre>
+</div>
+</div>
+<p>This shows which brands are purchased most frequently.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  promo avg_price pct_diff
+  &lt;lgl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 FALSE    0.0568    NA   
+2 TRUE     0.0527    -7.19</code></pre>
+</div>
+</div>
+<p>Promotional purchases are associated with a 7.2% reduction in price per ounce, indicating that promotions provide measurable cost savings to consumers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>beer_markets <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(brand) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_price =</span> <span class="fu">mean</span>(price_floz, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_volume =</span> <span class="fu">mean</span>(beer_floz, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(avg_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  brand         avg_price avg_volume
+  &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;
+1 NATURAL_LIGHT    0.0439       277.
+2 BUSCH_LIGHT      0.0449       311.
+3 MILLER_LITE      0.0597       264.
+4 COORS_LIGHT      0.0606       257.
+5 BUD_LIGHT        0.0616       249.</code></pre>
+</div>
+</div>
+<p>This compares average pricing and purchase volume across brands.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_beer <span class="ot">&lt;-</span> <span class="fu">lm</span>(price_floz <span class="sc">~</span> beer_floz <span class="sc">+</span> promo <span class="sc">+</span> income, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> beer_markets)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_beer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = price_floz ~ beer_floz + promo + income, data = beer_markets)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.055077 -0.008316  0.000170  0.007139  0.184644 
+
+Coefficients:
+                 Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)     6.548e-02  1.479e-04  442.685   &lt;2e-16 ***
+beer_floz      -2.697e-05  2.254e-07 -119.636   &lt;2e-16 ***
+promoTRUE      -2.974e-03  1.128e-04  -26.361   &lt;2e-16 ***
+income20-60k   -2.856e-03  1.478e-04  -19.324   &lt;2e-16 ***
+income200k+     7.556e-04  4.690e-04    1.611   0.1072    
+income60-100k  -2.561e-04  1.547e-04   -1.655   0.0979 .  
+incomeunder20k -4.196e-03  2.118e-04  -19.810   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.01209 on 73108 degrees of freedom
+Multiple R-squared:  0.1877,    Adjusted R-squared:  0.1877 
+F-statistic:  2816 on 6 and 73108 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The regression estimates how purchase size, promotions, and income are associated with price per ounce.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer_markets, <span class="fu">aes</span>(<span class="at">x =</span> beer_floz, <span class="at">y =</span> price_floz)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>This scatter plot visualizes the relationship between the quantity of items purchased and the corresponding dollar spent.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This bar plot shows the total dollar spent on each beer brand.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This box plot visualizes the distribution of the price per fl.oz. based on whether the item was promoted.</p>
+<p>After adjusting for extreme bulk purchases using a log scale, the negative relationship between volume and price becomes clearer, suggesting that consumers benefit from lower per-ounce pricing when buying larger quantities.</p>
 
 
 
