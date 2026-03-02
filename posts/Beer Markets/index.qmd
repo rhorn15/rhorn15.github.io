@@ -7,7 +7,7 @@ categories: [Beverages]
 
 Here is some analytics in relation to Beer Markets!
 
-![](Beer Image .jpeg)
+![](Beerimage.jpeg)
 
 ```{r, echo=FALSE}
 library(tidyverse)
