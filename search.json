@@ -452,21 +452,21 @@
     "href": "index.html",
     "title": "Ryan Horn",
     "section": "",
-    "text": "I am a second-year Data Analytics major at SUNY Geneseo with a passion for technology and problem-solving. My U.S. Army experience has strengthened my leadership, teamwork, and ability to perform under pressure. I am eager to apply my analytical skills to real-world challenges and connect with professionals to grow in the field."
+    "text": "Data Analytics student at SUNY Geneseo with experience spanning military service, electrical systems work, and applied analytics. I am interested in using data to solve real-world problems, communicate clear insights, and keep building technical skills in R, Git, visualization, and statistical thinking. My background in the U.S. Army has strengthened my leadership, adaptability, teamwork, and ability to perform under pressure."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
     "title": "Ryan Horn",
     "section": "Education",
-    "text": "Education\nCandidate for Bachelor of Science in Data Analytics at SUNY Geneseo  Geneseo, NY  Aug 2023 - May 2026"
+    "text": "Education\nSUNY Geneseo\nBachelor of Science in Data Analytics, expected May 2026\nGeneseo, NY"
   },
   {
     "objectID": "index.html#experience",
     "href": "index.html#experience",
     "title": "Ryan Horn",
     "section": "Experience",
-    "text": "Experience\nUSARNG July 2020 - July 2026"
+    "text": "Experience\nU.S. Army National Guard\nInfantryman | July 2020 - Present\n\nDeveloped leadership and teamwork through rigorous training and operational deployments.\nStrengthened strategic planning, adaptability, and problem-solving in high-pressure environments.\n\nTambe Electric\nLow Voltage Electrician | September 2018 - August 2020\n\nInstalled and maintained low-voltage systems for communication, security, and audio-visual components.\nApplied wiring, configuration, and troubleshooting skills to deliver reliable low-voltage solutions."
   },
   {
     "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
@@ -922,5 +922,12 @@
     "title": "NFL Shiny App",
     "section": "",
     "text": "Replace YOUR_SHINY_APP_URL below with your Posit Connect Cloud app URL."
+  },
+  {
+    "objectID": "index.html#skills",
+    "href": "index.html#skills",
+    "title": "Ryan Horn",
+    "section": "Skills",
+    "text": "Skills\nAnalytics and Programming: Data Analysis, R, RStudio, Git, Visualization\nTools: Microsoft Excel, Microsoft Office, PowerPoint, Word\nProfessional Strengths: Leadership, Communication, Analytical Thinking, Adaptability, Problem Solving, Time Management, Teamwork"
   }
 ]

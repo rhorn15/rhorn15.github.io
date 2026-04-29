@@ -25,15 +25,30 @@ about:
 
 ---
 
-  *I am a second-year Data Analytics major at SUNY Geneseo with a passion for technology and problem-solving. My U.S. Army experience has strengthened my leadership, teamwork, and ability to perform under pressure. I am eager to apply my analytical skills to real-world challenges and connect with professionals to grow in the field.*
+*Data Analytics student at SUNY Geneseo with experience spanning military service, electrical systems work, and applied analytics. I am interested in using data to solve real-world problems, communicate clear insights, and keep building technical skills in R, Git, visualization, and statistical thinking. My background in the U.S. Army has strengthened my leadership, adaptability, teamwork, and ability to perform under pressure.*
 
 ## Education
 
-*Candidate for Bachelor of Science in Data Analytics at SUNY Geneseo* <br>
-Geneseo, NY <br>
-Aug 2023 - May 2026 <br>
+**SUNY Geneseo**  
+Bachelor of Science in Data Analytics, expected May 2026  
+Geneseo, NY
 
 ## Experience
 
-USARNG July 2020 - July 2026
+**U.S. Army National Guard**  
+*Infantryman | July 2020 - Present*
 
+- Developed leadership and teamwork through rigorous training and operational deployments.
+- Strengthened strategic planning, adaptability, and problem-solving in high-pressure environments.
+
+**Tambe Electric**  
+*Low Voltage Electrician | September 2018 - August 2020*
+
+- Installed and maintained low-voltage systems for communication, security, and audio-visual components.
+- Applied wiring, configuration, and troubleshooting skills to deliver reliable low-voltage solutions.
+
+## Skills
+
+**Analytics and Programming:** Data Analysis, R, RStudio, Git, Visualization  
+**Tools:** Microsoft Excel, Microsoft Office, PowerPoint, Word  
+**Professional Strengths:** Leadership, Communication, Analytical Thinking, Adaptability, Problem Solving, Time Management, Teamwork
