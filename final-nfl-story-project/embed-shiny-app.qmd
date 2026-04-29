@@ -1,0 +1,17 @@
+---
+title: "NFL Shiny App"
+subtitle: "Embedded App for DANL 310"
+date: 2026-04-29
+format: html
+---
+
+Replace `YOUR_SHINY_APP_URL` below with your Posit Connect Cloud app URL.
+
+```{=html}
+<div style="text-align: center; margin: 1em 0;">
+  <iframe
+    src="YOUR_SHINY_APP_URL"
+    style="width: 100%; max-width: 1100px; height: 850px; border: none;"
+  ></iframe>
+</div>
+```

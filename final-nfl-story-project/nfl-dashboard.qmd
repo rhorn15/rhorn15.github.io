@@ -1,0 +1,151 @@
+---
+title: "NFL Success Dashboard"
+format: dashboard
+server: shiny
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| context: setup
+#| include: false
+required_pkgs <- c("dplyr", "ggplot2", "scales", "shiny")
+missing_pkgs <- required_pkgs[!vapply(required_pkgs, requireNamespace, logical(1), quietly = TRUE)]
+
+if (length(missing_pkgs) > 0) {
+  stop(
+    paste0(
+      "Missing required package(s): ",
+      paste(missing_pkgs, collapse = ", "),
+      ". Install with: install.packages(c(",
+      paste(sprintf('"%s"', missing_pkgs), collapse = ", "),
+      "))"
+    )
+  )
+}
+
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(shiny)
+
+source("R/nfl_data_prep.R")
+
+team_season <- load_nfl_standings() |>
+  prep_nfl_team_season(min_season = 2002) |>
+  add_team_style()
+```
+
+## {.sidebar width="300px"}
+
+```{r}
+selectInput(
+  inputId = "season_input",
+  label = "Season",
+  choices = sort(unique(team_season$season), decreasing = TRUE),
+  selected = max(team_season$season)
+)
+
+selectInput(
+  inputId = "conf_input",
+  label = "Conference",
+  choices = c("All", sort(unique(team_season$conf))),
+  selected = "All"
+)
+
+checkboxInput(
+  inputId = "playoff_only",
+  label = "Show playoff teams only",
+  value = FALSE
+)
+```
+
+## Row
+
+### Style Map
+
+```{r}
+plotOutput("style_map_plot", height = "420px")
+```
+
+### Winning Signal
+
+```{r}
+plotOutput("wins_signal_plot", height = "420px")
+```
+
+## Row
+
+### Team Table
+
+```{r}
+tableOutput("team_table")
+```
+
+```{r}
+#| context: server
+selected_data <- reactive({
+  df <- team_season |>
+    filter(season == input$season_input)
+
+  if (input$conf_input != "All") {
+    df <- df |>
+      filter(conf == input$conf_input)
+  }
+
+  if (isTRUE(input$playoff_only)) {
+    df <- df |>
+      filter(playoff_flag)
+  }
+
+  df
+})
+
+output$style_map_plot <- renderPlot({
+  selected_data() |>
+    ggplot(aes(x = points_for_pg, y = points_allowed_pg, color = style, label = team)) +
+    geom_point(size = 3, alpha = 0.9) +
+    geom_text(check_overlap = TRUE, nudge_y = 0.25, size = 3) +
+    labs(
+      title = paste("Offense vs. defense profile:", input$season_input),
+      x = "Points scored per game",
+      y = "Points allowed per game",
+      color = "Team style"
+    ) +
+    theme_minimal(base_size = 12)
+})
+
+output$wins_signal_plot <- renderPlot({
+  selected_data() |>
+    ggplot(aes(x = point_diff_pg, y = win_pct, color = playoff_flag)) +
+    geom_point(size = 3, alpha = 0.85) +
+    geom_smooth(method = "lm", se = FALSE, color = "gray30") +
+    scale_color_manual(values = c("TRUE" = "#1b9e77", "FALSE" = "#d95f02"), labels = c("No", "Yes")) +
+    scale_y_continuous(labels = percent_format(accuracy = 1)) +
+    labs(
+      title = "Point differential as a winning signal",
+      x = "Point differential per game",
+      y = "Winning percentage",
+      color = "Made playoffs"
+    ) +
+    theme_minimal(base_size = 12)
+})
+
+output$team_table <- renderTable({
+  selected_data() |>
+    transmute(
+      Team = team,
+      Conference = conf,
+      Wins = wins,
+      Losses = losses,
+      `Win %` = percent(win_pct, accuracy = 0.1),
+      `Pts/Game` = round(points_for_pg, 1),
+      `Opp Pts/Game` = round(points_allowed_pg, 1),
+      `Diff/Game` = round(point_diff_pg, 1),
+      Playoffs = if_else(playoff_flag, "Yes", "No"),
+      Style = style
+    ) |>
+    arrange(desc(Wins), desc(`Diff/Game`))
+}, striped = TRUE, bordered = TRUE, spacing = "xs")
+```
