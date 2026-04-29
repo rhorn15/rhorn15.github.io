@@ -7,10 +7,18 @@ website:
   navbar:
     pinned: true
     left:
-      - text: DANL 200 project 
-        href: DANL200_proj.qmd
-      - text: DANL 210 project
-        href: DANL210_proj.ipynb
+      - text: Projects
+        menu:
+          - text: Projects Home
+            href: projects.qmd
+          - text: NFL Story Project
+            href: final-nfl-story-project/nfl-story-project.qmd
+          - text: NFL Dashboard
+            href: final-nfl-story-project/nfl-dashboard.qmd
+          - text: DANL 200 project
+            href: DANL200_proj.qmd
+          - text: DANL 210 project
+            href: DANL210_proj.ipynb
       - text: Blog
         href: blog-listing.qmd
       - text: Python Data Analysis

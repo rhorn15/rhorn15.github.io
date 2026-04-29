@@ -1,0 +1,37 @@
+---
+title: "Projects"
+---
+
+## Featured Work
+
+This page collects the main project work published on my website, including course projects and interactive data stories.
+
+::: {.columns}
+::: {.column width="50%"}
+### NFL Data Storytelling Project
+
+This DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?
+
+[Open Story](final-nfl-story-project/nfl-story-project.html){.btn .btn-primary}
+[Open Dashboard](final-nfl-story-project/nfl-dashboard.html){.btn .btn-outline-secondary}
+:::
+
+::: {.column width="50%"}
+### Other Course Projects
+
+Additional coursework and portfolio pieces are still available here on the site through the project links below.
+
+[DANL 200 Project](DANL200_proj.html){.btn .btn-primary}
+[DANL 210 Project](DANL210_proj.html){.btn .btn-outline-secondary}
+:::
+:::
+
+## Project Notes
+
+The NFL project includes:
+
+- A full narrative webpage with data transformation, visualizations, and conclusions
+- A Quarto dashboard for quick interactive exploration
+- A Shiny app prepared for live deployment
+
+The story and dashboard are already published on this site. The Shiny app can be embedded here after deployment to Posit Connect Cloud.
