@@ -25,21 +25,29 @@ about:
 
 ---
 
-*Data Analytics student at SUNY Geneseo with experience spanning military service, electrical systems work, and applied analytics. I am interested in using data to solve real-world problems, communicate clear insights, and keep building technical skills in R, Git, visualization, and statistical thinking. My background in the U.S. Army has strengthened my leadership, adaptability, teamwork, and ability to perform under pressure.*
+*Data Analytics student at SUNY Geneseo and Claims Analytics Intern with experience working across SQL, Power BI, enterprise datasets, and reporting workflows. I enjoy building practical data products, validating results, and translating analysis into clear insights for teams and decision-makers. My background in analytics, military service, and hands-on operations has strengthened my adaptability, initiative, collaboration, and communication skills.*
 
 ## Education
 
 **SUNY Geneseo**  
 Bachelor of Science in Data Analytics, expected May 2026  
-Geneseo, NY
+Geneseo, NY  
+Major GPA: 3.82
 
 ## Experience
 
-**U.S. Army National Guard**  
-*Infantryman | July 2020 - Present*
+**AF Group**  
+*Claims Analytics Intern | May 2025 - Present*
 
-- Developed leadership and teamwork through rigorous training and operational deployments.
-- Strengthened strategic planning, adaptability, and problem-solving in high-pressure environments.
+- Built Power BI reports for workers' compensation claims using a Fabric semantic model to support operational decisions, trend analysis, and more reliable reporting.
+- Performed data validation, user acceptance testing, and ad hoc analysis in Excel and SQL across internal reporting resources.
+- Led demonstrations of new reporting tools for management and business partners and developed training material to support data literacy initiatives.
+
+**U.S. Army National Guard**  
+*Infantry Soldier | July 2020 - Present*
+
+- Completed Combat Lifesaver Certification and Airborne School, strengthening technical discipline, safety awareness, and performance under pressure.
+- Served in Eastern Africa in support of the Global War on Terror, contributing to base defense, threat assessment, and quick reaction force operations.
 
 **Tambe Electric**  
 *Low Voltage Electrician | September 2018 - August 2020*
@@ -47,8 +55,18 @@ Geneseo, NY
 - Installed and maintained low-voltage systems for communication, security, and audio-visual components.
 - Applied wiring, configuration, and troubleshooting skills to deliver reliable low-voltage solutions.
 
+## Projects
+
+**Accenture North America Data Analytics and Visualization Simulation**  
+- Cleaned, modeled, and analyzed seven datasets to identify content trends and support strategic recommendations.
+- Built a PowerPoint presentation and video summary to communicate findings to stakeholders.
+
+**PwC Switzerland Power BI Simulation**  
+- Created Power BI dashboards focused on KPIs and executive reporting needs.
+- Analyzed HR data to identify drivers behind gender-balance issues and proposed data-driven recommendations.
+
 ## Skills
 
-**Analytics and Programming:** Data Analysis, R, RStudio, Git, Visualization  
-**Tools:** Microsoft Excel, Microsoft Office, PowerPoint, Word  
-**Professional Strengths:** Leadership, Communication, Analytical Thinking, Adaptability, Problem Solving, Time Management, Teamwork
+**Analytics and Programming:** Python, R, SQL, Power BI, DAX, Excel, Power Query  
+**Tools:** Microsoft 365, PowerPoint, Word, Jira  
+**Professional Strengths:** Leadership, Communication, Collaboration, Adaptability, Problem Solving, Initiative

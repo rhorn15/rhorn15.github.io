@@ -452,21 +452,21 @@
     "href": "index.html",
     "title": "Ryan Horn",
     "section": "",
-    "text": "Data Analytics student at SUNY Geneseo with experience spanning military service, electrical systems work, and applied analytics. I am interested in using data to solve real-world problems, communicate clear insights, and keep building technical skills in R, Git, visualization, and statistical thinking. My background in the U.S. Army has strengthened my leadership, adaptability, teamwork, and ability to perform under pressure."
+    "text": "Data Analytics student at SUNY Geneseo and Claims Analytics Intern with experience working across SQL, Power BI, enterprise datasets, and reporting workflows. I enjoy building practical data products, validating results, and translating analysis into clear insights for teams and decision-makers. My background in analytics, military service, and hands-on operations has strengthened my adaptability, initiative, collaboration, and communication skills."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
     "title": "Ryan Horn",
     "section": "Education",
-    "text": "Education\nSUNY Geneseo\nBachelor of Science in Data Analytics, expected May 2026\nGeneseo, NY"
+    "text": "Education\nSUNY Geneseo\nBachelor of Science in Data Analytics, expected May 2026\nGeneseo, NY\nMajor GPA: 3.82"
   },
   {
     "objectID": "index.html#experience",
     "href": "index.html#experience",
     "title": "Ryan Horn",
     "section": "Experience",
-    "text": "Experience\nU.S. Army National Guard\nInfantryman | July 2020 - Present\n\nDeveloped leadership and teamwork through rigorous training and operational deployments.\nStrengthened strategic planning, adaptability, and problem-solving in high-pressure environments.\n\nTambe Electric\nLow Voltage Electrician | September 2018 - August 2020\n\nInstalled and maintained low-voltage systems for communication, security, and audio-visual components.\nApplied wiring, configuration, and troubleshooting skills to deliver reliable low-voltage solutions."
+    "text": "Experience\nAF Group\nClaims Analytics Intern | May 2025 - Present\n\nBuilt Power BI reports for workers’ compensation claims using a Fabric semantic model to support operational decisions, trend analysis, and more reliable reporting.\nPerformed data validation, user acceptance testing, and ad hoc analysis in Excel and SQL across internal reporting resources.\nLed demonstrations of new reporting tools for management and business partners and developed training material to support data literacy initiatives.\n\nU.S. Army National Guard\nInfantry Soldier | July 2020 - Present\n\nCompleted Combat Lifesaver Certification and Airborne School, strengthening technical discipline, safety awareness, and performance under pressure.\nServed in Eastern Africa in support of the Global War on Terror, contributing to base defense, threat assessment, and quick reaction force operations.\n\nTambe Electric\nLow Voltage Electrician | September 2018 - August 2020\n\nInstalled and maintained low-voltage systems for communication, security, and audio-visual components.\nApplied wiring, configuration, and troubleshooting skills to deliver reliable low-voltage solutions."
   },
   {
     "objectID": "danl200-hw5-Horn-Ryan.qmd/danl200-hw5-Horn-Ryan.qmd.html",
@@ -928,6 +928,13 @@
     "href": "index.html#skills",
     "title": "Ryan Horn",
     "section": "Skills",
-    "text": "Skills\nAnalytics and Programming: Data Analysis, R, RStudio, Git, Visualization\nTools: Microsoft Excel, Microsoft Office, PowerPoint, Word\nProfessional Strengths: Leadership, Communication, Analytical Thinking, Adaptability, Problem Solving, Time Management, Teamwork"
+    "text": "Skills\nAnalytics and Programming: Python, R, SQL, Power BI, DAX, Excel, Power Query\nTools: Microsoft 365, PowerPoint, Word, Jira\nProfessional Strengths: Leadership, Communication, Collaboration, Adaptability, Problem Solving, Initiative"
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Ryan Horn",
+    "section": "Projects",
+    "text": "Projects\nAccenture North America Data Analytics and Visualization Simulation\n- Cleaned, modeled, and analyzed seven datasets to identify content trends and support strategic recommendations. - Built a PowerPoint presentation and video summary to communicate findings to stakeholders.\nPwC Switzerland Power BI Simulation\n- Created Power BI dashboards focused on KPIs and executive reporting needs. - Analyzed HR data to identify drivers behind gender-balance issues and proposed data-driven recommendations."
   }
 ]
