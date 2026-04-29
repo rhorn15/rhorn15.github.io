@@ -9,7 +9,7 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/feed/
+      href: https://www.linkedin.com/in/ryanhorn15/
     - icon: instagram
       text: Instagram
       href: https://www.instagram.com/ryan_horn15/
@@ -36,5 +36,4 @@ Aug 2023 - May 2026 <br>
 ## Experience
 
 USARNG July 2020 - July 2026
-
 
