@@ -10,11 +10,11 @@ website:
       - text: Projects
         menu:
           - text: Projects Home
-            href: projects.qmd
+            href: projects/index.qmd
           - text: NFL Story Project
-            href: final-nfl-story-project/nfl-story-project.qmd
+            href: projects/nfl/nfl-story-project.qmd
           - text: NFL Dashboard
-            href: final-nfl-story-project/nfl-dashboard.qmd
+            href: projects/nfl/nfl-dashboard.qmd
           - text: DANL 200 project
             href: DANL200_proj.qmd
           - text: DANL 210 project

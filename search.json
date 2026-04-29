@@ -754,5 +754,173 @@
     "title": "DANL 310 Final Project: What Predicts NFL Success?",
     "section": "6. References (Optional)",
     "text": "6. References (Optional)\n\nnflverse standings.csv: https://github.com/nflverse/nfldata/raw/master/data/standings.csv"
+  },
+  {
+    "objectID": "index.html#featured-work",
+    "href": "index.html#featured-work",
+    "title": "NFL Shiny App",
+    "section": "Featured Work",
+    "text": "Featured Work\nThis page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\nNFL Data Storytelling Project\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\nOther Course Projects\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
+  },
+  {
+    "objectID": "index.html#project-notes",
+    "href": "index.html#project-notes",
+    "title": "NFL Shiny App",
+    "section": "Project Notes",
+    "text": "Project Notes\nThe NFL project includes:\n\nA full narrative webpage with data transformation, visualizations, and conclusions\nA Quarto dashboard for quick interactive exploration\nA Shiny app prepared for live deployment\n\nThe story and dashboard are already published on this site. The Shiny app can be embedded here after deployment to Posit Connect Cloud."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "NFL Shiny App",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nNFL teams can win in different ways, but not all winning styles are equally sustainable. This project asks a simple question:\nAre playoff teams mainly offense-led, defense-led, or balanced on both sides of the ball?\nWe use season-level NFL team records from the nflverse data repository to build a clear story around team performance, style, and postseason outcomes."
+  },
+  {
+    "objectID": "index.html#data",
+    "href": "index.html#data",
+    "title": "NFL Shiny App",
+    "section": "2. Data",
+    "text": "2. Data\nThe dataset comes from nflverse standings data:\n\nSource: https://github.com/nflverse/nfldata/raw/master/data/standings.csv\nUnit of analysis: one team in one season\nCore fields: wins, losses, ties, points scored, points allowed, point differential, and playoff indicator\nTime window: 2002 through the latest completed season in the file\n\nlibrary(tidyverse)\nlibrary(scales)\nsource(\"R/nfl_data_prep.R\")\nstandings_raw &lt;- load_nfl_standings()\nteam_season &lt;- standings_raw |&gt;\n  prep_nfl_team_season(min_season = 2002) |&gt;\n  add_team_style()\nstory &lt;- build_story_data(team_season)\nlatest_season &lt;- max(team_season$season)\nteam_season |&gt;\n  summarise(\n    min_season = min(season),\n    max_season = max(season),\n    team_seasons = n(),\n    unique_teams = n_distinct(team),\n    playoff_share = mean(playoff_flag)\n  )"
+  },
+  {
+    "objectID": "index.html#data-transformation-and-descriptive-statistics",
+    "href": "index.html#data-transformation-and-descriptive-statistics",
+    "title": "NFL Shiny App",
+    "section": "3. Data Transformation and Descriptive Statistics",
+    "text": "3. Data Transformation and Descriptive Statistics\n\nTransformations used\n\nFiltered to completed team-seasons (games_played &gt;= 16)\nCreated per-game metrics for fair comparisons across 16-game and 17-game eras:\n\npoints_for_pg\npoints_allowed_pg\npoint_diff_pg\n\nCreated a playoff_flag indicator\nBuilt team style categories by comparing each team to league averages in the same season:\n\nBalanced contender\nOffense-led\nDefense-led\nNeeds both sides\n\n\nteam_season |&gt;\n  count(style, sort = TRUE)\nA quick descriptive check: point differential and winning percentage are strongly related.\nteam_season |&gt;\n  summarise(correlation = cor(point_diff_pg, win_pct, use = \"complete.obs\"))"
+  },
+  {
+    "objectID": "index.html#data-visualization-and-storytelling",
+    "href": "index.html#data-visualization-and-storytelling",
+    "title": "NFL Shiny App",
+    "section": "4. Data Visualization and Storytelling",
+    "text": "4. Data Visualization and Storytelling\n\nFigure 1. Scoring trend in the NFL\nggplot(story$league_trend, aes(x = season, y = avg_points_for_pg)) +\n  geom_line(color = \"steelblue\", linewidth = 1) +\n  geom_smooth(method = \"loess\", se = FALSE, color = \"darkorange\", linewidth = 1) +\n  labs(\n    title = \"League scoring has generally risen in the modern era\",\n    subtitle = \"Average points scored per team per game\",\n    x = \"Season\",\n    y = \"Points per game\"\n  ) +\n  scale_y_continuous(labels = number_format(accuracy = 0.1)) +\n  theme_minimal(base_size = 12)\nScoring environments have changed across eras, which is why per-game metrics and season-relative style definitions are useful.\n\n\nFigure 2. Point differential is the backbone of winning\nggplot(team_season, aes(x = point_diff_pg, y = win_pct, color = playoff_flag)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray30\", linewidth = 1) +\n  scale_color_manual(values = c(\"TRUE\" = \"#1b9e77\", \"FALSE\" = \"#d95f02\"), labels = c(\"No\", \"Yes\")) +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  labs(\n    title = \"Teams with stronger point differential win more\",\n    subtitle = \"Playoff teams cluster in the high differential / high win-rate region\",\n    x = \"Point differential per game\",\n    y = \"Winning percentage\",\n    color = \"Made playoffs\"\n  ) +\n  theme_minimal(base_size = 12)\nThis plot shows that total team quality (scoring more while allowing less) is tightly connected to regular-season success.\n\n\nFigure 3. Which team style makes the playoffs most often?\nggplot(story$playoff_style, aes(x = style, y = playoff_rate, fill = era)) +\n  geom_col(position = position_dodge(width = 0.8), width = 0.7) +\n  scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1)) +\n  labs(\n    title = \"Balanced teams have the highest playoff rates\",\n    subtitle = \"Playoff rate by style and era\",\n    x = \"Team style\",\n    y = \"Playoff rate\",\n    fill = \"Era\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(axis.text.x = element_text(angle = 15, hjust = 1))\nThe most consistent pattern is that balanced contenders are the safest path to playoff football. Offense-led and defense-led teams can still succeed, but they are typically less reliable than teams that are above league average on both sides.\n\n\nFigure 4. Recent outliers (latest season)\nteam_season |&gt;\n  filter(season == latest_season) |&gt;\n  ggplot(aes(x = points_for_pg, y = points_allowed_pg, label = team, color = playoff_flag)) +\n  geom_point(size = 3, alpha = 0.8) +\n  geom_text(size = 3, check_overlap = TRUE, vjust = -0.8) +\n  scale_color_manual(values = c(\"TRUE\" = \"#1b9e77\", \"FALSE\" = \"#d95f02\"), labels = c(\"No\", \"Yes\")) +\n  labs(\n    title = paste(\"Style map for\", latest_season),\n    subtitle = \"Right is better offense; lower is better defense\",\n    x = \"Points scored per game\",\n    y = \"Points allowed per game\",\n    color = \"Made playoffs\"\n  ) +\n  theme_minimal(base_size = 12)\nThis final view highlights team archetypes in the most recent season and helps connect the full-league trend to concrete team examples."
+  },
+  {
+    "objectID": "index.html#conclusion",
+    "href": "index.html#conclusion",
+    "title": "NFL Shiny App",
+    "section": "5. Conclusion",
+    "text": "5. Conclusion\nAcross modern NFL seasons, one message is clear:\n\nPoint differential strongly tracks winning.\nPlayoff teams are disproportionately balanced teams.\nOne-sided strengths (only offense or only defense) can work, but they are less dependable.\n\nSo the best storytelling takeaway is not “offense always wins” or “defense always wins”. Instead, balance wins most consistently."
+  },
+  {
+    "objectID": "index.html#references-optional",
+    "href": "index.html#references-optional",
+    "title": "NFL Shiny App",
+    "section": "6. References (Optional)",
+    "text": "6. References (Optional)\n\nnflverse standings.csv: https://github.com/nflverse/nfldata/raw/master/data/standings.csv\n\n#| context: setup\n#| include: false\nrequired_pkgs &lt;- c(\"dplyr\", \"ggplot2\", \"readr\", \"scales\")\nmissing_pkgs &lt;- required_pkgs[!vapply(required_pkgs, requireNamespace, logical(1), quietly = TRUE)]\nif (length(missing_pkgs) &gt; 0) {\n  stop(\n    paste0(\n      \"Missing required package(s): \",\n      paste(missing_pkgs, collapse = \", \"),\n      \". Install with: install.packages(c(\",\n      paste(sprintf('\\\"%s\\\"', missing_pkgs), collapse = \", \"),\n      \"))\"\n    )\n  )\n}\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(scales)\nsource(\"R/nfl_data_prep.R\")\nteam_season &lt;- load_nfl_standings() |&gt;\n  prep_nfl_team_season(min_season = 2002) |&gt;\n  add_team_style()\nstory &lt;- build_story_data(team_season)\nlatest_season &lt;- max(team_season$season)\nlatest_data &lt;- team_season |&gt;\n  filter(season == latest_season)\nbest_team &lt;- latest_data |&gt;\n  arrange(desc(point_diff_pg)) |&gt;\n  slice(1)"
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "NFL Shiny App",
+    "section": "",
+    "text": "This dashboard gives a quick summary of the NFL storytelling project using season-level team data from nflverse.\n\nCoverage: 2002 through r latest_season\nFocus: scoring, point differential, team style, and playoff outcomes\nFull write-up: NFL Story Page\n\nThe separate Shiny app is reserved for the fully interactive version of this project."
+  },
+  {
+    "objectID": "index.html#row",
+    "href": "index.html#row",
+    "title": "NFL Shiny App",
+    "section": "Row",
+    "text": "Row\n\n\n#| content: valuebox\n#| title: \"Latest Season\"\nlist(\n  value = latest_season,\n  icon = \"calendar-event\",\n  color = \"primary\"\n)\n\n\n\n#| content: valuebox\n#| title: \"Playoff Teams\"\nlist(\n  value = sum(latest_data$playoff_flag),\n  icon = \"trophy\",\n  color = \"success\"\n)\n\n\n\n#| content: valuebox\n#| title: \"Best Point Differential\"\nlist(\n  value = paste0(best_team$team, \" (\", round(best_team$point_diff_pg, 1), \")\"),\n  icon = \"graph-up-arrow\",\n  color = \"info\"\n)"
+  },
+  {
+    "objectID": "index.html#row-1",
+    "href": "index.html#row-1",
+    "title": "NFL Shiny App",
+    "section": "Row",
+    "text": "Row\n\nLatest Season Style Map\nlatest_data |&gt;\n  ggplot(aes(x = points_for_pg, y = points_allowed_pg, color = style, label = team)) +\n  geom_point(size = 3, alpha = 0.9) +\n  geom_text(check_overlap = TRUE, nudge_y = 0.25, size = 3) +\n  labs(\n    title = paste(\"Offense and defense profile in\", latest_season),\n    x = \"Points scored per game\",\n    y = \"Points allowed per game\",\n    color = \"Team style\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\nWinning Signal Across Eras\nteam_season |&gt;\n  ggplot(aes(x = point_diff_pg, y = win_pct, color = playoff_flag)) +\n  geom_point(size = 2.5, alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray30\") +\n  scale_color_manual(\n    values = c(\"TRUE\" = \"#1b9e77\", \"FALSE\" = \"#d95f02\"),\n    labels = c(\"No\", \"Yes\")\n  ) +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  labs(\n    title = \"Point differential remains the strongest simple winning signal\",\n    x = \"Point differential per game\",\n    y = \"Winning percentage\",\n    color = \"Made playoffs\"\n  ) +\n  theme_minimal(base_size = 12)"
+  },
+  {
+    "objectID": "index.html#row-2",
+    "href": "index.html#row-2",
+    "title": "NFL Shiny App",
+    "section": "Row",
+    "text": "Row\n\nPlayoff Rate by Team Style\nstory$playoff_style |&gt;\n  ggplot(aes(x = style, y = playoff_rate, fill = era)) +\n  geom_col(position = position_dodge(width = 0.8), width = 0.7) +\n  scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1)) +\n  labs(\n    title = \"Balanced teams reach the playoffs more often\",\n    x = \"Team style\",\n    y = \"Playoff rate\",\n    fill = \"Era\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(axis.text.x = element_text(angle = 15, hjust = 1))\n\n\nLatest Season Leaders\nlatest_data |&gt;\n  transmute(\n    Team = team,\n    Wins = wins,\n    Losses = losses,\n    `Win %` = percent(win_pct, accuracy = 0.1),\n    `Pts/Game` = round(points_for_pg, 1),\n    `Opp Pts/Game` = round(points_allowed_pg, 1),\n    `Diff/Game` = round(point_diff_pg, 1),\n    Playoffs = if_else(playoff_flag, \"Yes\", \"No\"),\n    Style = style\n  ) |&gt;\n  arrange(desc(Wins), desc(`Diff/Game`)) |&gt;\n  head(10)"
+  },
+  {
+    "objectID": "index.html#row-3",
+    "href": "index.html#row-3",
+    "title": "NFL Shiny App",
+    "section": "Row",
+    "text": "Row\n\nLeague Scoring Trend\nstory$league_trend |&gt;\n  ggplot(aes(x = season, y = avg_points_for_pg)) +\n  geom_line(color = \"steelblue\", linewidth = 1) +\n  geom_smooth(method = \"loess\", se = FALSE, color = \"darkorange\", linewidth = 1) +\n  labs(\n    title = \"League scoring has generally risen in the modern era\",\n    x = \"Season\",\n    y = \"Average points per game\"\n  ) +\n  theme_minimal(base_size = 12)\nReplace YOUR_SHINY_APP_URL below with your Posit Connect Cloud app URL."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
+  },
+  {
+    "objectID": "projects/index.html#featured-work",
+    "href": "projects/index.html#featured-work",
+    "title": "Projects",
+    "section": "",
+    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
+  },
+  {
+    "objectID": "projects/index.html#project-notes",
+    "href": "projects/index.html#project-notes",
+    "title": "Projects",
+    "section": "Project Notes",
+    "text": "Project Notes\nThe NFL project includes:\n\nA full narrative webpage with data transformation, visualizations, and conclusions\nA Quarto dashboard for quick interactive exploration\nA Shiny app prepared for live deployment\n\nThe story and dashboard are already published on this site. The Shiny app can be embedded here after deployment to Posit Connect Cloud."
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html",
+    "href": "projects/nfl/nfl-story-project.html",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "",
+    "text": "NFL teams can win in different ways, but not all winning styles are equally sustainable. This project asks a simple question:\nAre playoff teams mainly offense-led, defense-led, or balanced on both sides of the ball?\nWe use season-level NFL team records from the nflverse data repository to build a clear story around team performance, style, and postseason outcomes."
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#introduction",
+    "href": "projects/nfl/nfl-story-project.html#introduction",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "",
+    "text": "NFL teams can win in different ways, but not all winning styles are equally sustainable. This project asks a simple question:\nAre playoff teams mainly offense-led, defense-led, or balanced on both sides of the ball?\nWe use season-level NFL team records from the nflverse data repository to build a clear story around team performance, style, and postseason outcomes."
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#data",
+    "href": "projects/nfl/nfl-story-project.html#data",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "2. Data",
+    "text": "2. Data\nThe dataset comes from nflverse standings data:\n\nSource: https://github.com/nflverse/nfldata/raw/master/data/standings.csv\nUnit of analysis: one team in one season\nCore fields: wins, losses, ties, points scored, points allowed, point differential, and playoff indicator\nTime window: 2002 through the latest completed season in the file\n\n\n\nCode\nlibrary(tidyverse)\nlibrary(scales)\n\nsource(\"R/nfl_data_prep.R\")\n\nstandings_raw &lt;- load_nfl_standings()\nteam_season &lt;- standings_raw |&gt;\n  prep_nfl_team_season(min_season = 2002) |&gt;\n  add_team_style()\n\nstory &lt;- build_story_data(team_season)\nlatest_season &lt;- max(team_season$season)\n\nteam_season |&gt;\n  summarise(\n    min_season = min(season),\n    max_season = max(season),\n    team_seasons = n(),\n    unique_teams = n_distinct(team),\n    playoff_share = mean(playoff_flag)\n  )\n\n\n# A tibble: 1 × 5\n  min_season max_season team_seasons unique_teams playoff_share\n       &lt;dbl&gt;      &lt;dbl&gt;        &lt;int&gt;        &lt;int&gt;         &lt;dbl&gt;\n1       2002       2025          768           35         0.391"
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#data-transformation-and-descriptive-statistics",
+    "href": "projects/nfl/nfl-story-project.html#data-transformation-and-descriptive-statistics",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "3. Data Transformation and Descriptive Statistics",
+    "text": "3. Data Transformation and Descriptive Statistics\n\nTransformations used\n\nFiltered to completed team-seasons (games_played &gt;= 16)\nCreated per-game metrics for fair comparisons across 16-game and 17-game eras:\n\npoints_for_pg\npoints_allowed_pg\npoint_diff_pg\n\nCreated a playoff_flag indicator\nBuilt team style categories by comparing each team to league averages in the same season:\n\nBalanced contender\nOffense-led\nDefense-led\nNeeds both sides\n\n\n\n\nCode\nteam_season |&gt;\n  count(style, sort = TRUE)\n\n\n# A tibble: 4 × 2\n  style                  n\n  &lt;chr&gt;              &lt;int&gt;\n1 Balanced contender   242\n2 Needs both sides     236\n3 Defense-led          160\n4 Offense-led          130\n\n\nA quick descriptive check: point differential and winning percentage are strongly related.\n\n\nCode\nteam_season |&gt;\n  summarise(correlation = cor(point_diff_pg, win_pct, use = \"complete.obs\"))\n\n\n# A tibble: 1 × 1\n  correlation\n        &lt;dbl&gt;\n1       0.911"
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#data-visualization-and-storytelling",
+    "href": "projects/nfl/nfl-story-project.html#data-visualization-and-storytelling",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "4. Data Visualization and Storytelling",
+    "text": "4. Data Visualization and Storytelling\n\nFigure 1. Scoring trend in the NFL\n\n\nCode\nggplot(story$league_trend, aes(x = season, y = avg_points_for_pg)) +\n  geom_line(color = \"steelblue\", linewidth = 1) +\n  geom_smooth(method = \"loess\", se = FALSE, color = \"darkorange\", linewidth = 1) +\n  labs(\n    title = \"League scoring has generally risen in the modern era\",\n    subtitle = \"Average points scored per team per game\",\n    x = \"Season\",\n    y = \"Points per game\"\n  ) +\n  scale_y_continuous(labels = number_format(accuracy = 0.1)) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\nScoring environments have changed across eras, which is why per-game metrics and season-relative style definitions are useful.\n\n\nFigure 2. Point differential is the backbone of winning\n\n\nCode\nggplot(team_season, aes(x = point_diff_pg, y = win_pct, color = playoff_flag)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray30\", linewidth = 1) +\n  scale_color_manual(values = c(\"TRUE\" = \"#1b9e77\", \"FALSE\" = \"#d95f02\"), labels = c(\"No\", \"Yes\")) +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  labs(\n    title = \"Teams with stronger point differential win more\",\n    subtitle = \"Playoff teams cluster in the high differential / high win-rate region\",\n    x = \"Point differential per game\",\n    y = \"Winning percentage\",\n    color = \"Made playoffs\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\nThis plot shows that total team quality (scoring more while allowing less) is tightly connected to regular-season success.\n\n\nFigure 3. Which team style makes the playoffs most often?\n\n\nCode\nggplot(story$playoff_style, aes(x = style, y = playoff_rate, fill = era)) +\n  geom_col(position = position_dodge(width = 0.8), width = 0.7) +\n  scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1)) +\n  labs(\n    title = \"Balanced teams have the highest playoff rates\",\n    subtitle = \"Playoff rate by style and era\",\n    x = \"Team style\",\n    y = \"Playoff rate\",\n    fill = \"Era\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(axis.text.x = element_text(angle = 15, hjust = 1))\n\n\n\n\n\n\n\n\n\nThe most consistent pattern is that balanced contenders are the safest path to playoff football. Offense-led and defense-led teams can still succeed, but they are typically less reliable than teams that are above league average on both sides.\n\n\nFigure 4. Recent outliers (latest season)\n\n\nCode\nteam_season |&gt;\n  filter(season == latest_season) |&gt;\n  ggplot(aes(x = points_for_pg, y = points_allowed_pg, label = team, color = playoff_flag)) +\n  geom_point(size = 3, alpha = 0.8) +\n  geom_text(size = 3, check_overlap = TRUE, vjust = -0.8) +\n  scale_color_manual(values = c(\"TRUE\" = \"#1b9e77\", \"FALSE\" = \"#d95f02\"), labels = c(\"No\", \"Yes\")) +\n  labs(\n    title = paste(\"Style map for\", latest_season),\n    subtitle = \"Right is better offense; lower is better defense\",\n    x = \"Points scored per game\",\n    y = \"Points allowed per game\",\n    color = \"Made playoffs\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\nThis final view highlights team archetypes in the most recent season and helps connect the full-league trend to concrete team examples."
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#conclusion",
+    "href": "projects/nfl/nfl-story-project.html#conclusion",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "5. Conclusion",
+    "text": "5. Conclusion\nAcross modern NFL seasons, one message is clear:\n\nPoint differential strongly tracks winning.\nPlayoff teams are disproportionately balanced teams.\nOne-sided strengths (only offense or only defense) can work, but they are less dependable.\n\nSo the best storytelling takeaway is not “offense always wins” or “defense always wins”. Instead, balance wins most consistently."
+  },
+  {
+    "objectID": "projects/nfl/nfl-story-project.html#references-optional",
+    "href": "projects/nfl/nfl-story-project.html#references-optional",
+    "title": "DANL 310 Final Project: What Predicts NFL Success?",
+    "section": "6. References (Optional)",
+    "text": "6. References (Optional)\n\nnflverse standings.csv: https://github.com/nflverse/nfldata/raw/master/data/standings.csv"
+  },
+  {
+    "objectID": "projects/nfl/embed-shiny-app.html",
+    "href": "projects/nfl/embed-shiny-app.html",
+    "title": "NFL Shiny App",
+    "section": "",
+    "text": "Replace YOUR_SHINY_APP_URL below with your Posit Connect Cloud app URL."
   }
 ]
