@@ -11,6 +11,8 @@ website:
         menu:
           - text: Projects Home
             href: projects/index.qmd
+          - text: DANL 410 Capstone
+            href: projects/capstone/index.qmd
           - text: NFL Story Project
             href: projects/nfl/nfl-story-project.qmd
           - text: NFL Dashboard
@@ -28,7 +30,7 @@ website:
           - text: Seaborn Basics
             href: seaborn_basics.ipynb
   page-footer: 
-    center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
+    center: "Powered with GitHub and Quarto<br>© Ryan Horn, 2026"
 
 format:
   html:

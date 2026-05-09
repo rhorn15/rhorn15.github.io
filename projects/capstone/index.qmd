@@ -1,0 +1,33 @@
+---
+title: "DANL 410 Capstone"
+---
+
+## Forecasting NFL Wide Receiver Production from Draft Information
+
+This capstone project studies whether NFL draft position and pre-draft information can predict wide receiver production over a player's first five professional seasons. The analysis uses NFL draft, combine, game, play, passing, and receiving data to build a receiver-level modeling dataset.
+
+[Open Full Capstone Report](wr_draft_capstone_report.html){.btn .btn-primary}
+
+## Project Materials
+
+- **Research question:** How well does draft position predict wide receiver production over the first five NFL seasons, and how much do other pre-draft variables improve that prediction?
+- **Dataset:** Drafted NFL wide receivers from 2005 to 2015, matched to first-five-season receiving production.
+- **Methods:** Exploratory data analysis, linear models, random forest modeling, holdout evaluation, rolling draft-year cross-validation, residual analysis, and EPA-per-target robustness checks.
+- **Outcome focus:** First-five-season receiving yards, with EPA per target used as a robustness outcome.
+
+## Submission Checklist
+
+The full report includes the major capstone components:
+
+- Research question and project framing
+- Data sources and dataset construction
+- Descriptive statistics and visual exploration
+- Predictive modeling and model comparison
+- Rolling cross-validation
+- Feature importance and coefficient interpretation
+- Residual analysis
+- Robustness analysis with EPA per target
+
+## Notes
+
+The raw data files and Quarto source file are submitted separately in Brightspace. This page provides the public project webpage link for the capstone report.

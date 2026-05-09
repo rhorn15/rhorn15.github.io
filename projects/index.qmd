@@ -8,6 +8,15 @@ This page collects the main project work published on my website, including cour
 
 ::: {.columns}
 ::: {.column width="50%"}
+### DANL 410 Capstone
+
+This capstone project asks whether NFL draft position and pre-draft information can predict wide receiver production over the first five professional seasons.
+
+[Open Capstone](capstone/index.html){.btn .btn-primary}
+[Full Report](capstone/wr_draft_capstone_report.html){.btn .btn-outline-secondary}
+:::
+
+::: {.column width="50%"}
 ### NFL Data Storytelling Project
 
 This DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?
@@ -15,7 +24,9 @@ This DANL 310 final project asks a simple question: what kind of teams make the 
 [Open Story](nfl/nfl-story-project.html){.btn .btn-primary}
 [Open Dashboard](nfl/nfl-dashboard.html){.btn .btn-outline-secondary}
 :::
+:::
 
+::: {.columns}
 ::: {.column width="50%"}
 ### Other Course Projects
 
@@ -28,7 +39,13 @@ Additional coursework and portfolio pieces are still available here on the site 
 
 ## Project Notes
 
-The NFL project includes:
+The DANL 410 capstone includes:
+
+- A public capstone webpage
+- A full HTML report with data construction, modeling, validation, and robustness checks
+- A separate raw-data and source-code submission through Brightspace
+
+The DANL 310 NFL project includes:
 
 - A full narrative webpage with data transformation, visualizations, and conclusions
 - A Quarto dashboard for quick interactive exploration
