@@ -36,19 +36,3 @@ Additional coursework and portfolio pieces are still available here on the site 
 [DANL 210 Project](../DANL210_proj.html){.btn .btn-outline-secondary}
 :::
 :::
-
-## Project Notes
-
-The DANL 410 capstone includes:
-
-- A public capstone webpage
-- A full HTML report with data construction, modeling, validation, and robustness checks
-- A separate raw-data and source-code submission through Brightspace
-
-The DANL 310 NFL project includes:
-
-- A full narrative webpage with data transformation, visualizations, and conclusions
-- A Quarto dashboard for quick interactive exploration
-- A Shiny app prepared for live deployment
-
-The story and dashboard are already published on this site. The Shiny app can be embedded here after deployment to Posit Connect Cloud.

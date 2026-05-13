@@ -851,21 +851,14 @@
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
+    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis capstone project asks whether NFL draft position and pre-draft information can predict wide receiver production over the first five professional seasons.\nOpen Capstone Full Report\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
   },
   {
     "objectID": "projects/index.html#featured-work",
     "href": "projects/index.html#featured-work",
     "title": "Projects",
     "section": "",
-    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
-  },
-  {
-    "objectID": "projects/index.html#project-notes",
-    "href": "projects/index.html#project-notes",
-    "title": "Projects",
-    "section": "Project Notes",
-    "text": "Project Notes\nThe NFL project includes:\n\nA full narrative webpage with data transformation, visualizations, and conclusions\nA Quarto dashboard for quick interactive exploration\nA Shiny app prepared for live deployment\n\nThe story and dashboard are already published on this site. The Shiny app can be embedded here after deployment to Posit Connect Cloud."
+    "text": "This page collects the main project work published on my website, including course projects and interactive data stories.\n\n\n\n\nThis capstone project asks whether NFL draft position and pre-draft information can predict wide receiver production over the first five professional seasons.\nOpen Capstone Full Report\n\n\n\n\nThis DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?\nOpen Story Open Dashboard\n\n\n\n\n\n\n\nAdditional coursework and portfolio pieces are still available here on the site through the project links below.\nDANL 200 Project DANL 210 Project"
   },
   {
     "objectID": "projects/nfl/nfl-story-project.html",
@@ -936,5 +929,40 @@
     "title": "Ryan Horn",
     "section": "Projects",
     "text": "Projects\nAccenture North America Data Analytics and Visualization Simulation\n- Cleaned, modeled, and analyzed seven datasets to identify content trends and support strategic recommendations. - Built a PowerPoint presentation and video summary to communicate findings to stakeholders.\nPwC Switzerland Power BI Simulation\n- Created Power BI dashboards focused on KPIs and executive reporting needs. - Analyzed HR data to identify drivers behind gender-balance issues and proposed data-driven recommendations."
+  },
+  {
+    "objectID": "projects/capstone/index.html",
+    "href": "projects/capstone/index.html",
+    "title": "DANL 410 Capstone",
+    "section": "",
+    "text": "This capstone project studies whether NFL draft position and pre-draft information can predict wide receiver production over a player’s first five professional seasons. The analysis uses NFL draft, combine, game, play, passing, and receiving data to build a receiver-level modeling dataset.\nOpen Full Capstone Report"
+  },
+  {
+    "objectID": "projects/capstone/index.html#forecasting-nfl-wide-receiver-production-from-draft-information",
+    "href": "projects/capstone/index.html#forecasting-nfl-wide-receiver-production-from-draft-information",
+    "title": "DANL 410 Capstone",
+    "section": "",
+    "text": "This capstone project studies whether NFL draft position and pre-draft information can predict wide receiver production over a player’s first five professional seasons. The analysis uses NFL draft, combine, game, play, passing, and receiving data to build a receiver-level modeling dataset.\nOpen Full Capstone Report"
+  },
+  {
+    "objectID": "projects/capstone/index.html#project-materials",
+    "href": "projects/capstone/index.html#project-materials",
+    "title": "DANL 410 Capstone",
+    "section": "Project Materials",
+    "text": "Project Materials\n\nResearch question: How well does draft position predict wide receiver production over the first five NFL seasons, and how much do other pre-draft variables improve that prediction?\nDataset: Drafted NFL wide receivers from 2005 to 2015, matched to first-five-season receiving production.\nMethods: Exploratory data analysis, linear models, random forest modeling, holdout evaluation, rolling draft-year cross-validation, residual analysis, and EPA-per-target robustness checks.\nOutcome focus: First-five-season receiving yards, with EPA per target used as a robustness outcome."
+  },
+  {
+    "objectID": "projects/capstone/index.html#submission-checklist",
+    "href": "projects/capstone/index.html#submission-checklist",
+    "title": "DANL 410 Capstone",
+    "section": "Submission Checklist",
+    "text": "Submission Checklist\nThe full report includes the major capstone components:\n\nResearch question and project framing\nData sources and dataset construction\nDescriptive statistics and visual exploration\nPredictive modeling and model comparison\nRolling cross-validation\nFeature importance and coefficient interpretation\nResidual analysis\nRobustness analysis with EPA per target"
+  },
+  {
+    "objectID": "projects/capstone/index.html#notes",
+    "href": "projects/capstone/index.html#notes",
+    "title": "DANL 410 Capstone",
+    "section": "Notes",
+    "text": "Notes\nThe raw data files and Quarto source file are submitted separately in Brightspace. This page provides the public project webpage link for the capstone report."
   }
 ]
