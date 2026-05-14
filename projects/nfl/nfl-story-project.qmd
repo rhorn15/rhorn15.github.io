@@ -273,6 +273,18 @@ This final plot helps keep the conclusion honest.
 Even recent offense-led champions are rarely one-dimensional teams.
 Most Super Bowl winners are still above league average on both offense and defense, but the side that stands out most has increasingly been offense rather than defense.
 
+### Homework 6 Interactive and Animated Visuals
+
+The interactive version of the champion profile plot lets readers hover over each Super Bowl winner to see the team, season, champion type, offensive edge, defensive edge, and point differential per game.
+
+```{=html}
+<iframe src="homework6-interactive-plot.html" style="width: 100%; height: 650px; border: none;"></iframe>
+```
+
+The animation shows how the Super Bowl champion profile moves across seasons, using the same offense-versus-defense comparison from the main story.
+
+![](homework6-champion-animation.gif)
+
 ## 5. Conclusion
 
 So, does defense really win championships?
