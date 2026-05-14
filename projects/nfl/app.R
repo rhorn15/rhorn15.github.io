@@ -9,56 +9,55 @@ team_season <- load_nfl_standings() |>
   prep_nfl_team_season(min_season = 2002) |>
   add_team_style()
 
+story <- build_story_data(team_season)
+
+champions <- story$champions |>
+  mutate(
+    strongest_side = recode(
+      strongest_unit,
+      "Offense was stronger" = "Offense-led",
+      "Defense was stronger" = "Defense-led",
+      "Balanced edge" = "Balanced"
+    )
+  )
+
 ui <- fluidPage(
-  titlePanel("NFL Story Explorer: What Predicts Winning?"),
+  titlePanel("Does Defense Really Win Championships?"),
   sidebarLayout(
     sidebarPanel(
-      sliderInput(
-        inputId = "season_range",
-        label = "Season range",
-        min = min(team_season$season),
-        max = max(team_season$season),
-        value = c(min(team_season$season), max(team_season$season)),
-        sep = ""
-      ),
       selectInput(
-        inputId = "conf_filter",
-        label = "Conference",
-        choices = c("All", sort(unique(team_season$conf))),
+        inputId = "era_filter",
+        label = "Era filter",
+        choices = c("All", unique(champions$era)),
         selected = "All"
       ),
       selectInput(
-        inputId = "team_input",
-        label = "Team explorer",
-        choices = sort(unique(team_season$team)),
-        selected = "KC"
+        inputId = "champion_season",
+        label = "Champion season",
+        choices = champions$season,
+        selected = max(champions$season)
+      ),
+      checkboxInput(
+        inputId = "show_labels",
+        label = "Label all teams in season context",
+        value = FALSE
       )
     ),
     mainPanel(
       tabsetPanel(
         tabPanel(
-          title = "League Trends",
-          plotOutput("scoring_trend_plot", height = "350px"),
-          plotOutput("playoff_style_plot", height = "350px")
+          title = "Overview",
+          plotOutput("champion_type_plot", height = "320px"),
+          plotOutput("era_edge_plot", height = "320px")
         ),
         tabPanel(
-          title = "Team Explorer",
-          plotOutput("team_trend_plot", height = "380px"),
-          tableOutput("team_summary_table")
+          title = "Champion Context",
+          plotOutput("season_context_plot", height = "380px"),
+          tableOutput("selected_champion_table")
         ),
         tabPanel(
-          title = "Season Snapshot",
-          sliderInput(
-            inputId = "season_snapshot",
-            label = "Choose a season",
-            min = min(team_season$season),
-            max = max(team_season$season),
-            value = max(team_season$season),
-            sep = "",
-            step = 1
-          ),
-          plotOutput("snapshot_plot", height = "380px"),
-          tableOutput("snapshot_table")
+          title = "Champion Table",
+          tableOutput("champion_table")
         )
       )
     )
@@ -66,122 +65,138 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  filtered_data <- reactive({
-    df <- team_season |>
-      filter(
-        season >= input$season_range[1],
-        season <= input$season_range[2]
-      )
+  filtered_champions <- reactive({
+    df <- champions
 
-    if (input$conf_filter != "All") {
+    if (input$era_filter != "All") {
       df <- df |>
-        filter(conf == input$conf_filter)
+        filter(era == input$era_filter)
     }
 
     df
   })
 
-  output$scoring_trend_plot <- renderPlot({
-    filtered_data() |>
-      group_by(season) |>
-      summarise(avg_points_for_pg = mean(points_for_pg, na.rm = TRUE), .groups = "drop") |>
-      ggplot(aes(x = season, y = avg_points_for_pg)) +
-      geom_line(color = "steelblue", linewidth = 1) +
-      geom_smooth(method = "loess", se = FALSE, color = "darkorange", linewidth = 1) +
-      labs(
-        title = "Average points per game over time",
-        x = "Season",
-        y = "Points per game"
-      ) +
-      theme_minimal(base_size = 12)
+  selected_champion <- reactive({
+    champions |>
+      filter(season == input$champion_season)
   })
 
-  output$playoff_style_plot <- renderPlot({
-    filtered_data() |>
-      group_by(style) |>
-      summarise(playoff_rate = mean(playoff_flag, na.rm = TRUE), n = n(), .groups = "drop") |>
-      mutate(style = reorder(style, playoff_rate)) |>
-      ggplot(aes(x = style, y = playoff_rate, fill = style)) +
+  output$champion_type_plot <- renderPlot({
+    filtered_champions() |>
+      count(strongest_side, sort = TRUE) |>
+      ggplot(aes(x = reorder(strongest_side, n), y = n, fill = strongest_side)) +
       geom_col(width = 0.7, show.legend = FALSE) +
-      geom_text(aes(label = percent(playoff_rate, accuracy = 0.1)), hjust = -0.1, size = 4) +
+      geom_text(aes(label = n), hjust = -0.1, size = 4) +
       coord_flip() +
-      scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1)) +
+      scale_y_continuous(expand = expansion(mult = c(0, 0.08))) +
       labs(
-        title = "Playoff rate by team style",
-        x = "Team style",
-        y = "Playoff rate"
+        title = "What kind of champions show up most often?",
+        subtitle = if (input$era_filter == "All") "All Super Bowl winners since 2002" else paste("Era:", input$era_filter),
+        x = "Champion type",
+        y = "Number of champions"
       ) +
       theme_minimal(base_size = 12)
   })
 
-  output$team_trend_plot <- renderPlot({
-    filtered_data() |>
-      filter(team == input$team_input) |>
-      select(season, win_pct, point_diff_pg) |>
-      tidyr::pivot_longer(cols = c(win_pct, point_diff_pg), names_to = "metric", values_to = "value") |>
-      mutate(metric = recode(metric, win_pct = "Winning percentage", point_diff_pg = "Point differential per game")) |>
-      ggplot(aes(x = season, y = value, color = metric)) +
-      geom_line(linewidth = 1, show.legend = FALSE) +
-      geom_point(size = 2, show.legend = FALSE) +
-      facet_wrap(~metric, ncol = 1, scales = "free_y") +
+  output$era_edge_plot <- renderPlot({
+    era_summary <- story$champion_era_summary
+
+    if (input$era_filter != "All") {
+      era_summary <- era_summary |>
+        filter(era == input$era_filter)
+    }
+
+    era_summary |>
+      select(era, avg_offense_edge, avg_defense_edge) |>
+      tidyr::pivot_longer(
+        cols = c(avg_offense_edge, avg_defense_edge),
+        names_to = "metric",
+        values_to = "edge"
+      ) |>
+      mutate(
+        metric = recode(
+          metric,
+          avg_offense_edge = "Average offense edge",
+          avg_defense_edge = "Average defense edge"
+        )
+      ) |>
+      ggplot(aes(x = era, y = edge, fill = metric)) +
+      geom_col(position = position_dodge(width = 0.75), width = 0.65) +
       labs(
-        title = paste("Performance trend:", input$team_input),
-        x = "Season",
-        y = "Metric value"
+        title = "How champion strength shifts across eras",
+        x = "Era",
+        y = "Points per game relative to league average",
+        fill = "Metric"
       ) +
       theme_minimal(base_size = 12)
   })
 
-  output$team_summary_table <- renderTable({
-    filtered_data() |>
-      filter(team == input$team_input) |>
+  output$season_context_plot <- renderPlot({
+    season_df <- team_season |>
+      filter(season == input$champion_season)
+
+    champ_df <- selected_champion()
+
+    p <- ggplot(season_df, aes(x = offense_vs_league, y = defense_vs_league)) +
+      geom_hline(yintercept = 0, color = "gray75", linewidth = 0.5) +
+      geom_vline(xintercept = 0, color = "gray75", linewidth = 0.5) +
+      geom_point(color = "gray65", alpha = 0.5) +
+      geom_point(data = champ_df, color = "#d95f02", size = 3.5) +
+      labs(
+        title = paste("League context for the", champ_df$season, champ_df$team),
+        subtitle = paste("Champion type:", champ_df$strongest_side),
+        x = "Offensive edge vs. league average",
+        y = "Defensive edge vs. league average"
+      ) +
+      theme_minimal(base_size = 12)
+
+    if (isTRUE(input$show_labels)) {
+      p <- p +
+        geom_text(aes(label = team), size = 3, nudge_y = 0.2, check_overlap = TRUE)
+    } else {
+      p <- p +
+        geom_text(
+          data = champ_df,
+          aes(x = offense_vs_league, y = defense_vs_league, label = team),
+          size = 3,
+          nudge_y = 0.25,
+          inherit.aes = FALSE
+        )
+    }
+
+    p
+  })
+
+  output$selected_champion_table <- renderTable({
+    selected_champion() |>
       transmute(
         Season = season,
+        Team = team,
         Conference = conf,
         Wins = wins,
         Losses = losses,
         Ties = ties,
         `Win %` = percent(win_pct, accuracy = 0.1),
-        `Pts/Game` = round(points_for_pg, 1),
-        `Opp Pts/Game` = round(points_allowed_pg, 1),
         `Diff/Game` = round(point_diff_pg, 1),
-        Playoffs = if_else(playoff_flag, "Yes", "No"),
-        Style = style
-      ) |>
-      arrange(desc(Season))
+        `Offense Edge` = round(offense_vs_league, 1),
+        `Defense Edge` = round(defense_vs_league, 1),
+        `Champion Type` = strongest_side
+      )
   }, striped = TRUE, bordered = TRUE, spacing = "xs")
 
-  output$snapshot_plot <- renderPlot({
-    filtered_data() |>
-      filter(season == input$season_snapshot) |>
-      ggplot(aes(x = point_diff_pg, y = win_pct, color = playoff_flag, label = team)) +
-      geom_point(size = 3, alpha = 0.85) +
-      geom_text(check_overlap = TRUE, nudge_y = 0.02, size = 3) +
-      geom_smooth(method = "lm", se = FALSE, color = "gray30") +
-      scale_color_manual(values = c("TRUE" = "#1b9e77", "FALSE" = "#d95f02"), labels = c("No", "Yes")) +
-      scale_y_continuous(labels = percent_format(accuracy = 1)) +
-      labs(
-        title = paste("Season snapshot:", input$season_snapshot),
-        x = "Point differential per game",
-        y = "Winning percentage",
-        color = "Made playoffs"
-      ) +
-      theme_minimal(base_size = 12)
-  })
-
-  output$snapshot_table <- renderTable({
-    filtered_data() |>
-      filter(season == input$season_snapshot) |>
-      arrange(desc(win_pct), desc(point_diff_pg)) |>
+  output$champion_table <- renderTable({
+    filtered_champions() |>
       transmute(
+        Season = season,
         Team = team,
+        Conference = conf,
+        Wins = wins,
+        Losses = losses,
         `Win %` = percent(win_pct, accuracy = 0.1),
         `Diff/Game` = round(point_diff_pg, 1),
-        `Pts/Game` = round(points_for_pg, 1),
-        `Opp Pts/Game` = round(points_allowed_pg, 1),
-        Style = style,
-        Playoffs = if_else(playoff_flag, "Yes", "No")
-      )
+        `Champion Type` = strongest_side
+      ) |>
+      arrange(desc(Season))
   }, striped = TRUE, bordered = TRUE, spacing = "xs")
 }
 

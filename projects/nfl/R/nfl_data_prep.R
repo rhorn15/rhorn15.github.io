@@ -2,6 +2,16 @@
 
 NFL_STANDINGS_URL <- "https://github.com/nflverse/nfldata/raw/master/data/standings.csv"
 
+normalize_franchise_team <- function(team) {
+  dplyr::recode(
+    team,
+    STL = "LA",
+    SD = "LAC",
+    OAK = "LV",
+    .default = team
+  )
+}
+
 load_nfl_standings <- function(path = "data/standings.csv", refresh = FALSE) {
   if (!requireNamespace("readr", quietly = TRUE)) {
     stop("Package 'readr' is required.")
@@ -23,11 +33,13 @@ prep_nfl_team_season <- function(standings_raw, min_season = 2002, max_season = 
 
   df <- standings_raw |>
     dplyr::mutate(
+      franchise_team = normalize_franchise_team(team),
       seed_num = suppressWarnings(as.numeric(seed)),
       games_played = wins + losses + ties,
       # Some seasons have blank playoff text for teams that clearly made the
       # postseason, so use seed as the primary playoff indicator.
       playoff_flag = (!is.na(seed_num)) | (!is.na(playoff) & playoff != ""),
+      champion_flag = playoff == "WonSB",
       win_pct = (wins + 0.5 * ties) / games_played,
       points_for_pg = scored / games_played,
       points_allowed_pg = allowed / games_played,
@@ -73,6 +85,11 @@ add_team_style <- function(team_season) {
         offense_vs_league >= 0 & defense_vs_league < 0 ~ "Offense-led",
         offense_vs_league < 0 & defense_vs_league >= 0 ~ "Defense-led",
         TRUE ~ "Needs both sides"
+      ),
+      strongest_unit = dplyr::case_when(
+        abs(offense_vs_league - defense_vs_league) <= 1 ~ "Balanced edge",
+        offense_vs_league > defense_vs_league ~ "Offense was stronger",
+        TRUE ~ "Defense was stronger"
       )
     )
 }
@@ -96,6 +113,42 @@ build_story_data <- function(team_season_styled) {
       dplyr::summarise(
         playoff_rate = mean(playoff_flag, na.rm = TRUE),
         n_team_seasons = dplyr::n(),
+        .groups = "drop"
+      ),
+    champions = team_season_styled |>
+      dplyr::filter(champion_flag) |>
+      dplyr::arrange(season) |>
+      dplyr::select(
+        season,
+        team,
+        conf,
+        wins,
+        losses,
+        ties,
+        win_pct,
+        point_diff_pg,
+        points_for_pg,
+        points_allowed_pg,
+        offense_vs_league,
+        defense_vs_league,
+        style,
+        strongest_unit,
+        era
+      ),
+    champion_strength = team_season_styled |>
+      dplyr::filter(champion_flag) |>
+      dplyr::count(strongest_unit, sort = TRUE),
+    champion_strength_by_era = team_season_styled |>
+      dplyr::filter(champion_flag) |>
+      dplyr::count(era, strongest_unit),
+    champion_era_summary = team_season_styled |>
+      dplyr::filter(champion_flag) |>
+      dplyr::group_by(era) |>
+      dplyr::summarise(
+        champions = dplyr::n(),
+        avg_offense_edge = mean(offense_vs_league, na.rm = TRUE),
+        avg_defense_edge = mean(defense_vs_league, na.rm = TRUE),
+        avg_point_diff_pg = mean(point_diff_pg, na.rm = TRUE),
         .groups = "drop"
       ),
     era_summary = team_season_styled |>

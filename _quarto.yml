@@ -15,8 +15,6 @@ website:
             href: projects/capstone/index.qmd
           - text: NFL Story Project
             href: projects/nfl/nfl-story-project.qmd
-          - text: NFL Dashboard
-            href: projects/nfl/nfl-dashboard.qmd
           - text: DANL 200 project
             href: DANL200_proj.qmd
           - text: DANL 210 project

@@ -19,10 +19,9 @@ This capstone project asks whether NFL draft position and pre-draft information 
 ::: {.column width="50%"}
 ### NFL Data Storytelling Project
 
-This DANL 310 final project asks a simple question: what kind of teams make the playoffs most consistently in the modern NFL?
+This DANL 310 final project asks whether defense really wins championships, or whether modern Super Bowl winners have become more offense-led.
 
 [Open Story](nfl/nfl-story-project.html){.btn .btn-primary}
-[Open Dashboard](nfl/nfl-dashboard.html){.btn .btn-outline-secondary}
 :::
 :::
 
