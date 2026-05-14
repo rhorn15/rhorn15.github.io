@@ -106,20 +106,22 @@ server <- function(input, output, session) {
         filter(era == input$era_filter)
     }
 
-    era_summary |>
-      select(era, avg_offense_edge, avg_defense_edge) |>
-      tidyr::pivot_longer(
-        cols = c(avg_offense_edge, avg_defense_edge),
-        names_to = "metric",
-        values_to = "edge"
-      ) |>
-      mutate(
-        metric = recode(
-          metric,
-          avg_offense_edge = "Average offense edge",
-          avg_defense_edge = "Average defense edge"
+    era_edges <- bind_rows(
+      era_summary |>
+        transmute(
+          era,
+          metric = "Average offense edge",
+          edge = avg_offense_edge
+        ),
+      era_summary |>
+        transmute(
+          era,
+          metric = "Average defense edge",
+          edge = avg_defense_edge
         )
-      ) |>
+    )
+
+    era_edges |>
       ggplot(aes(x = era, y = edge, fill = metric)) +
       geom_col(position = position_dodge(width = 0.75), width = 0.65) +
       labs(
